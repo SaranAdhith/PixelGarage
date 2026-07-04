@@ -34,41 +34,97 @@ COLORS.forEach((c) => {
   paletteEl.appendChild(b);
 });
 
-/* ---------- hero canvas: a pixel Pac-Man you can draw on ---------- */
-/* 16x16 sprite. . = empty, Y = pac yellow, k = eye */
-const PACMAN = [
-  '................',
-  '.....YYYYYY.....',
-  '...YYYYYYYYYY...',
-  '..YYYYYYYYYYYY..',
-  '..YYYYkYYYY.....',
-  '.YYYYYYYY.......',
-  '.YYYYYYY........',
-  '.YYYYYY.........',
-  '.YYYYYY.........',
-  '.YYYYYYY........',
-  '.YYYYYYYY.......',
-  '..YYYYYYYYY.....',
-  '..YYYYYYYYYYYY..',
-  '...YYYYYYYYYY...',
-  '.....YYYYYY.....',
-  '................'
+/* ---------- hero canvas: a pixel Pac-Man MAZE you can draw on ---------- */
+/* legend: # wall, . pellet, o power pellet, ' ' path,
+   Y pac-man, R/P/C/O ghosts (red/pink/cyan/orange) */
+const MAZE = [
+  '############################',
+  '#............##............#',
+  '#.####.#####.##.#####.####.#',
+  '#o####.#####.##.#####.####o#',
+  '#.####.#####.##.#####.####.#',
+  '#..........................#',
+  '#.####.##.########.##.####.#',
+  '#.####.##.########.##.####.#',
+  '#......##....##....##......#',
+  '######.#####.##.#####.######',
+  '######.#####.##.#####.######',
+  '######.##....R.....##.######',
+  '######.##.###--###.##.######',
+  '######.##.#..PC..#.##.######',
+  '      .##.########.##.      ',
+  '######.##.########.##.######',
+  '######Y##....O.....##.######',
+  '######.#####.##.#####.######',
+  '######.#####.##.#####.######',
+  '#............##............#',
+  '#.####.#####.##.#####.####.#',
+  '#o..##..............##...o.#',
+  '###.##.##.########.##.##.###',
+  '###.##.##.########.##.##.###',
+  '#......##....##....##......#',
+  '#.##########.##.##########.#',
+  '#.##########.##.##########.#',
+  '#..........................#',
+  '############################'
 ];
-const MAP = {
-  Y: '#ffe11a',  // pac-man body
-  k: '#1c1633'   // eye
-};
+const MAZE_COLS = MAZE[0].length;
+const MAZE_ROWS = MAZE.length;
+
+const WALL   = '#2121de';                 // maze wall (neon blue)
+const PELLET = '#ffd9b3';                 // pellet / dot
+const GHOSTS = { R: '#ff3b30', P: '#ffb8ff', C: '#19e0e0', O: '#ffb852' };
+const isWall = (x, y) =>
+  y >= 0 && y < MAZE_ROWS && x >= 0 && x < MAZE_COLS && MAZE[y][x] === '#';
+
+// two white eyes with dark pupils layered over the body colour
+const ghostFace = (body) =>
+  `radial-gradient(circle at 34% 44%, #fff 0 22%, #1c1633 22% 34%, transparent 35%),` +
+  `radial-gradient(circle at 66% 44%, #fff 0 22%, #1c1633 22% 34%, transparent 35%),` +
+  `${body}`;
 
 const canvas = document.getElementById('pixelCanvas');
-for (let y = 0; y < 16; y++) {
-  for (let x = 0; x < 16; x++) {
-    const ch = PACMAN[y][x];
+canvas.style.gridTemplateColumns = `repeat(${MAZE_COLS}, 1fr)`;
+canvas.style.aspectRatio = `${MAZE_COLS} / ${MAZE_ROWS}`;
+
+for (let y = 0; y < MAZE_ROWS; y++) {
+  for (let x = 0; x < MAZE_COLS; x++) {
+    const ch = MAZE[y][x];
     const cell = document.createElement('i');
-    const col = MAP[ch] || 'transparent';
-    cell.style.background = col;
+
+    if (ch === '#') {
+      // arcade-style hollow walls: a blue edge is drawn only where a wall cell
+      // faces a corridor, so solid blocks read as thin blue-lined pipes.
+      cell.style.boxSizing = 'border-box';
+      if (!isWall(x, y - 1)) cell.style.borderTop    = `2px solid ${WALL}`;
+      if (!isWall(x, y + 1)) cell.style.borderBottom = `2px solid ${WALL}`;
+      if (!isWall(x - 1, y)) cell.style.borderLeft   = `2px solid ${WALL}`;
+      if (!isWall(x + 1, y)) cell.style.borderRight  = `2px solid ${WALL}`;
+    } else if (ch === 'Y') {
+      // pac-man, mouth open to the right
+      cell.style.background =
+        `conic-gradient(from 125deg at 50% 50%, #ffe11a 0 290deg, transparent 290deg)`;
+      cell.style.borderRadius = '50%';
+      cell.style.transform = 'scale(1.8)';
+      cell.style.position = 'relative';
+      cell.style.zIndex = '2';
+    } else if (GHOSTS[ch]) {
+      cell.style.background = ghostFace(GHOSTS[ch]);
+      cell.style.borderRadius = '50% 50% 16% 16%';
+      cell.style.transform = 'scale(1.7)';
+      cell.style.position = 'relative';
+      cell.style.zIndex = '2';
+    } else if (ch === 'o') {
+      cell.style.background = `radial-gradient(circle, ${PELLET} 0 42%, transparent 44%)`;
+    } else if (ch === '.') {
+      cell.style.background = `radial-gradient(circle, ${PELLET} 0 20%, transparent 22%)`;
+    }
     canvas.appendChild(cell);
 
     const paint = () => {
+      cell.style.border = '0';
+      cell.style.borderRadius = '0';
+      cell.style.transform = 'none';
       cell.style.background = active === '#00000000' ? 'transparent' : active;
     };
     cell.addEventListener('mousedown', paint);
@@ -80,6 +136,9 @@ canvas.addEventListener('touchmove', e => {
   const t = e.touches[0];
   const el = document.elementFromPoint(t.clientX, t.clientY);
   if (el && el.parentElement === canvas) {
+    el.style.border = '0';
+    el.style.borderRadius = '0';
+    el.style.transform = 'none';
     el.style.background = active === '#00000000' ? 'transparent' : active;
   }
 }, { passive: true });
@@ -168,6 +227,17 @@ for (let n = 0; n < 12; n++) {
   cell.setAttribute('aria-label', `${p.name} — ${p.role}. ${p.bio}`);
   grid.appendChild(cell);
 }
+
+/* ---------- keep the first screen exactly one viewport tall ---------- */
+/* measure the sticky nav so hero + marquee + pac-man fill the rest of the view */
+const navBar = document.querySelector('.nav');
+const syncNavHeight = () => {
+  if (navBar) document.documentElement.style.setProperty('--nav-h', navBar.offsetHeight + 'px');
+};
+syncNavHeight();
+window.addEventListener('resize', syncNavHeight);
+/* re-measure once the pixel fonts load, since they change the nav's height */
+document.fonts?.ready.then(syncNavHeight);
 
 /* ---------- reveal on scroll ---------- */
 const io = new IntersectionObserver(entries => {
