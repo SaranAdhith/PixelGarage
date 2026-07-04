@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixelGarage — Apps, Websites & Backends, Built From Scratch</title>
+  <meta name="description" content="PixelGarage is a software studio building iOS & Android apps, custom websites and backends for companies — from scratch to launch." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23ffd23f'/><path d='M8 8 L16 3 L16 13 Z' fill='%231c1633'/></svg>" />
+</head>
+<body>
+  <!-- ===== decorative pixels floating in background ===== -->
+  <div class="pixel-field" aria-hidden="true"></div>
+
+  <!-- ===== NAV ===== -->
+  <header class="nav" id="top">
+    <a class="brand" href="#top">
+      <span class="brand-logo" aria-hidden="true">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </span>
+      <span class="brand-name">PIXEL<span>GARAGE</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn-sm">Start a Project</a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">▚</button>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="badge">▚ APPS · WEBSITES · BACKEND</span>
+        <h1 class="title">
+          WE BUILD <span class="hl hl-orange">APPS</span><br />
+          &amp; <span class="hl hl-teal">WEBSITES</span>
+        </h1>
+        <p class="lede">
+          PixelGarage is a software studio that builds iOS &amp; Android apps,
+          custom websites and backends for companies — designed and coded
+          from scratch, all the way to launch.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-lg">Start a Project</a>
+          <a href="#work" class="btn btn-ghost btn-lg">▶ See Our Work</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>₹4.5L+</b><span>In revenue</span></div>
+          <div><b>Multiple</b><span>Projects shipped</span></div>
+          <div><b>25</b><span>Testers</span></div>
+        </div>
+      </div>
+
+      <!-- pixel-art canvas illustration -->
+      <div class="hero-art">
+        <div class="window">
+          <div class="window-bar">
+            <span class="dot dot-r"></span>
+            <span class="dot dot-y"></span>
+            <span class="dot dot-g"></span>
+            <em>pixelgarage — 16×16</em>
+          </div>
+          <div class="window-body">
+            <div class="canvas" id="pixelCanvas" role="img" aria-label="A pixel-art sprite you can draw on"></div>
+            <div class="palette" id="palette"></div>
+          </div>
+        </div>
+        <div class="float-chip chip-1">iOS + Android</div>
+        <div class="float-chip chip-2">✎ from scratch</div>
+        <div class="float-chip chip-3">◷ backend</div>
+      </div>
+    </section>
+
+    <!-- ===== MARQUEE ===== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>iOS ✦ ANDROID ✦ WEBSITES ✦ BACKEND ✦ APIs ✦ UI/UX ✦ LAUNCH ✦ iOS ✦ ANDROID ✦ WEBSITES ✦ BACKEND ✦ APIs ✦ UI/UX ✦ LAUNCH ✦</span>
+        <span>iOS ✦ ANDROID ✦ WEBSITES ✦ BACKEND ✦ APIs ✦ UI/UX ✦ LAUNCH ✦ iOS ✦ ANDROID ✦ WEBSITES ✦ BACKEND ✦ APIs ✦ UI/UX ✦ LAUNCH ✦</span>
+      </div>
+    </div>
+
+    <!-- ===== PAC-MAN CHASE ===== -->
+    <section class="pacman-strip" aria-label="Pac-Man chase animation">
+      <div class="pac-lane" aria-hidden="true">
+        <span class="dots">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i class="power"></i>
+        </span>
+        <div class="chase">
+          <span class="pac"></span>
+          <span class="ghost ghost--red"><b></b><b></b></span>
+          <span class="ghost ghost--pink"><b></b><b></b></span>
+          <span class="ghost ghost--cyan"><b></b><b></b></span>
+          <span class="ghost ghost--orange"><b></b><b></b></span>
+        </div>
+      </div>
+      <p class="pac-tag">▚ FROM IDEA ▚ TO LAUNCH ▚ SHIPPED ▚</p>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="section" id="services">
+      <div class="section-head">
+        <span class="eyebrow">◆ WHAT WE DO</span>
+        <h2>Everything it takes<br />to ship a product.</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="card" style="--c:#ff5c39">
+          <div class="card-icon">▤</div>
+          <h3>iOS &amp; Android Apps</h3>
+          <p>Native-quality mobile apps for your company and your clients, built for the App Store &amp; Play Store.</p>
+        </article>
+        <article class="card" style="--c:#00c2a8">
+          <div class="card-icon">◈</div>
+          <h3>Websites From Scratch</h3>
+          <p>Fast, responsive websites designed and coded to match your brand — no templates, all custom.</p>
+        </article>
+        <article class="card" style="--c:#7c5cff">
+          <div class="card-icon">◨</div>
+          <h3>Backend &amp; APIs</h3>
+          <p>Secure, scalable servers, databases and APIs. We build the backend and hand you full ownership.</p>
+        </article>
+        <article class="card" style="--c:#ffd23f">
+          <div class="card-icon">✎</div>
+          <h3>Product Design</h3>
+          <p>UX &amp; UI designed before a line of code is written, so what we build actually feels good to use.</p>
+        </article>
+        <article class="card" style="--c:#ff5c9e">
+          <div class="card-icon">⇪</div>
+          <h3>Launch &amp; Deploy</h3>
+          <p>Store submissions, hosting and a smooth go-live — we take it all the way to production.</p>
+        </article>
+        <article class="card" style="--c:#39a0ff">
+          <div class="card-icon">◷</div>
+          <h3>Support &amp; Updates</h3>
+          <p>Bug fixes, iterations and updates after launch. We stay on to keep your product healthy.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== OUR WORK / SPLIT ===== -->
+    <section class="section section-alt" id="work">
+      <div class="split">
+        <div class="split-art">
+          <div class="tool-stack">
+            <div class="tool-row active"><span class="sw" style="background:#ff5c39"></span> Mount Valley School</div>
+            <div class="tool-row"><span class="sw" style="background:#00c2a8"></span> RoomAdda</div>
+            <div class="tool-row"><span class="sw" style="background:#7c5cff"></span> Web ✦ Backend</div>
+            <div class="tool-row"><span class="sw" style="background:#ffd23f"></span> iOS ✦ Android</div>
+            <div class="tool-row"><span class="sw" style="background:#ff5c9e"></span> UI / UX Design</div>
+            <div class="tool-row"><span class="sw" style="background:#39a0ff"></span> Tested by 25 testers</div>
+          </div>
+        </div>
+        <div class="split-copy">
+          <span class="eyebrow">◆ OUR WORK</span>
+          <h2>Products we've shipped.</h2>
+          <p>Multiple projects live and in real hands — including a platform for <b>Mount Valley School</b> and the <b>RoomAdda</b> booking product — each built end-to-end, from design to backend to launch.</p>
+          <ul class="check-list">
+            <li>Mount Valley School — web + backend build</li>
+            <li>RoomAdda — app + backend for rooms &amp; stays</li>
+            <li>₹4.5L+ in revenue so far</li>
+            <li>Every release checked by 25 testers</li>
+          </ul>
+          <a href="#contact" class="btn">Build with us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section class="section" id="gallery">
+      <div class="section-head center">
+        <span class="eyebrow">◆ THE CREW</span>
+        <h2>A little pixel personality.</h2>
+        <p class="section-sub">Hover over a sprite to meet the crew behind PixelGarage.</p>
+      </div>
+      <div class="gallery" id="gallery-grid"></div>
+    </section>
+
+    <!-- ===== TEAM / FOUNDERS ===== -->
+    <section class="section section-alt" id="team">
+      <div class="section-head center">
+        <span class="eyebrow">◆ THE FOUNDERS</span>
+        <h2>The people behind PixelGarage.</h2>
+        <p class="section-sub">A small, hands-on team that builds every product ourselves.</p>
+      </div>
+      <div class="team-grid">
+        <article class="member">
+          <div class="avatar" aria-label="Pixel Pac-Man">
+            <span class="pac"></span>
+          </div>
+          <h3>Saran Adhith</h3>
+          <p class="role">Co-Founder</p>
+          <span class="member-tag">▚ Apps · Backend · Launch</span>
+        </article>
+        <article class="member">
+          <div class="avatar" aria-label="Red pixel ghost">
+            <span class="ghost ghost--red"><b></b><b></b></span>
+          </div>
+          <h3>Alwin Joseph</h3>
+          <p class="role">Co-Founder</p>
+          <span class="member-tag">▚ Apps · Web · Delivery</span>
+        </article>
+        <article class="member">
+          <div class="avatar" aria-label="Cyan pixel ghost">
+            <span class="ghost ghost--cyan"><b></b><b></b></span>
+          </div>
+          <h3>Daraneesh</h3>
+          <p class="role">Co-Founder</p>
+          <span class="member-tag">▚ Design · UX · Web</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta" id="contact">
+      <div class="cta-inner">
+        <h2>Have an idea in mind?<br />Bring it to the garage.</h2>
+        <p>Tell us about your app, website or backend and we'll take it from idea to launch.</p>
+        <div class="hero-cta center">
+          <a href="mailto:hello@pixelgarage.dev" class="btn btn-lg">Get in Touch</a>
+          <a href="#work" class="btn btn-ghost btn-lg">See Our Work</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-name"><span class="brand-logo brand-logo--sm" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span> PIXEL<span>GARAGE</span></span>
+        <p>Apps, websites &amp; backends, built from scratch to launch.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#gallery">Gallery</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+        <a href="mailto:hello@pixelgarage.dev">Email us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Build With Us</h4>
+        <a href="#services">iOS &amp; Android</a>
+        <a href="#services">Websites</a>
+        <a href="#services">Backend &amp; APIs</a>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <span>© 2026 PixelGarage. All rights pixelated.</span>
+      <span class="footer-social">
+        <a href="#">IN</a><a href="#">IG</a><a href="#">YT</a><a href="#">GH</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
