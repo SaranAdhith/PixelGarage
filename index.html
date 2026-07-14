@@ -3,269 +3,765 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PixelGarage — Apps, Websites & Backends, Built From Scratch</title>
-  <meta name="description" content="PixelGarage is a software studio building iOS & Android apps, custom websites and backends for companies — from scratch to launch." />
+  <title>PixelGarage — Studio Mission Control · Apps, Websites & Backends</title>
+  <meta name="description" content="PixelGarage is a software studio that designs, builds and launches iOS & Android apps, custom websites and backends — from first idea to production. Products shipped for Mount Valley School and RoomAdda." />
+  <meta name="theme-color" content="#e7e6e2" />
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="PixelGarage — Software Studio for Apps, Websites & Backends" />
+  <meta property="og:description" content="We design, build and launch iOS & Android apps, custom websites and backends — from idea to production." />
+  <meta property="og:url" content="https://pixelgarage.in" />
+  <meta property="og:image" content="https://pixelgarage.in/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23ffd23f'/><path d='M8 8 L16 3 L16 13 Z' fill='%231c1633'/></svg>" />
+  <link rel="canonical" href="https://pixelgarage.in/" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23e7e6e2'/><text x='16' y='23' font-family='Archivo,Arial,sans-serif' font-size='19' font-weight='900' text-anchor='middle' fill='%2316150f'>PG</text></svg>" />
 </head>
 <body>
-  <!-- ===== decorative pixels floating in background ===== -->
-  <div class="pixel-field" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ===== NAV ===== -->
-  <header class="nav" id="top">
-    <a class="brand" href="#top">
-      <img class="brand-img" src="logo.png" alt="PixelGarage" width="1254" height="360" />
+  <!-- ============================================================
+       LEFT RAIL — MISSION OVERVIEW
+       ============================================================ -->
+  <aside class="rail" id="rail">
+    <button class="rail-close" id="railClose" aria-label="Close panel">✕</button>
+
+    <a href="#mission" class="brand">
+      <span class="brand-mark">PG</span>
+      <span class="brand-sub">Pixel<br>Garage</span>
     </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#services">Services</a>
+
+    <div class="rail-scroll">
+      <div class="rail-block">
+        <h2 class="rail-h">Mission<br>Overview</h2>
+      </div>
+
+      <div class="rail-block">
+        <div class="rail-label">Target</div>
+        <p class="rail-text">
+          PixelGarage is a software studio that designs, builds and launches
+          iOS &amp; Android apps, custom websites and the backends behind them —
+          one team, from first idea to a live product.
+        </p>
+      </div>
+
+      <div class="rail-block">
+        <div class="rail-label">Crew Overview</div>
+        <ul class="crew-mini">
+          <li>
+            <span class="ctag">AP</span>
+            <span class="cinfo"><b>Saran Adhith</b><em>Founder</em></span>
+          </li>
+          <li>
+            <span class="ctag">UX</span>
+            <span class="cinfo"><b>Daraneesh</b><em>Co-Founder</em></span>
+          </li>
+          <li>
+            <span class="ctag">WB</span>
+            <span class="cinfo"><b>Alwin Joseph</b><em>Co-Founder</em></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="rail-block rail-foot">
+        <span class="rail-status"><i class="dot"></i> Available for new projects</span>
+        <a href="mailto:pixelgarage.info@gmail.com" class="rail-mail">pixelgarage.info@gmail.com</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============================================================
+       TOP BAR — NAV
+       ============================================================ -->
+  <header class="topbar">
+    <button class="rail-toggle" id="railToggle" aria-label="Open panel">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="topnav" id="topnav">
+      <a href="#mission" class="active">Mission</a>
+      <a href="#crew">Crew</a>
       <a href="#work">Work</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#team">Team</a>
+      <a href="#process">Process</a>
+      <a href="#stack">Stack</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="#contact" class="btn btn-sm">Start a Project</a>
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">▚</button>
+    <a href="#contact" class="topbar-cta">Start a project <span aria-hidden="true">↗</span></a>
   </header>
 
-  <!-- ===== HERO ===== -->
-  <main>
-    <!-- first screen: hero + marquee + pac-man, filling the viewport -->
-    <div class="hero-screen">
-    <section class="hero">
-      <div class="hero-copy">
-        <span class="badge">▚ APPS · WEBSITES · BACKEND</span>
-        <h1 class="title">
-          WE BUILD <span class="hl hl-orange">APPS</span><br />
-          &amp; <span class="hl hl-teal">WEBSITES</span>
-        </h1>
-        <p class="lede">
-          PixelGarage is a software studio that builds iOS &amp; Android apps,
-          custom websites and backends for companies — designed and coded
-          from scratch, all the way to launch.
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main class="content" id="main">
+
+    <!-- ---------- MISSION (HERO) ---------- -->
+    <section id="mission" class="hero">
+      <!-- Blueprint schematic (bleeds off right) -->
+      <div class="blueprint" aria-hidden="true">
+        <svg viewBox="0 0 520 920" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <marker id="dim" markerWidth="9" markerHeight="9" refX="7.5" refY="3" orient="auto"><path d="M0 0 L0 6 L8 3 Z" fill="currentColor"/></marker>
+            <marker id="dimS" markerWidth="9" markerHeight="9" refX="1" refY="3" orient="auto"><path d="M8 0 L8 6 L0 3 Z" fill="currentColor"/></marker>
+          </defs>
+
+          <!-- ============ VEHICLE — Saturn-V, axis x=250 ============ -->
+          <g class="bp-main" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
+            <!-- Launch escape system: tower motor + lattice tower -->
+            <path d="M250 48 L245 62 L255 62 Z" />
+            <path d="M245 62 L245 74 L255 74 L255 62" />
+            <path d="M246 74 L246 120 M254 74 L254 120" />
+            <!-- Command module (cone) -->
+            <path d="M244 120 L236 148 L264 148 L256 120 Z" />
+            <!-- Service module (cylinder) -->
+            <path d="M236 148 L235 196 M264 148 L265 196" />
+            <!-- SLA adapter taper down to S-IVB -->
+            <path d="M235 196 L228 216 M265 196 L272 216" />
+            <!-- S-IVB (3rd stage) -->
+            <path d="M228 216 L228 330 M272 216 L272 330" />
+            <!-- Instrument unit band -->
+            <path d="M228 330 L272 330 M228 344 L272 344" />
+            <!-- Interstage taper to S-II -->
+            <path d="M228 344 L216 374 M272 344 L284 374" />
+            <!-- S-II (2nd stage) -->
+            <path d="M216 374 L216 520 M284 374 L284 520" />
+            <!-- Interstage (cylindrical) to S-IC -->
+            <path d="M216 520 L216 548 M284 520 L284 548" />
+            <!-- S-IC (1st stage) -->
+            <path d="M216 548 L216 726 M284 548 L284 726" />
+            <!-- Aft skirt + base -->
+            <path d="M216 726 L216 748 L284 748 L284 726" />
+            <!-- Fins (2 outer, swept) -->
+            <path d="M216 690 L172 758 L216 748 Z" />
+            <path d="M284 690 L328 758 L284 748 Z" />
+            <!-- F-1 engine cluster (side view: 3 visible bells) -->
+            <path d="M221 748 L213 790 L237 790 L233 748" />
+            <path d="M213 790 Q225 799 237 790" />
+            <path d="M242 748 L235 793 L265 793 L258 748" />
+            <path d="M235 793 Q250 803 265 793" />
+            <path d="M279 748 L267 790 L287 790 L279 748" />
+            <path d="M267 790 Q277 799 287 790" />
+          </g>
+
+          <!-- ============ STRUCTURE DETAIL ============ -->
+          <g class="bp-detail" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+            <!-- Centerline chain (dash-dot) -->
+            <path d="M250 120 L250 748" stroke-dasharray="16 3 2 3" />
+            <!-- Stage-separation lines -->
+            <path d="M236 148 L264 148 M235 196 L265 196 M228 216 L272 216 M228 344 L272 344 M216 374 L284 374 M216 520 L284 520 M216 548 L284 548" />
+            <!-- Quarter seams -->
+            <path d="M234 374 L234 726 M266 374 L266 726" opacity=".5" />
+            <!-- Instrument-unit hatch -->
+            <path d="M228 344 L236 330 M240 344 L248 330 M252 344 L260 330 M264 344 L272 330" opacity=".7" />
+            <!-- SM radiator seams -->
+            <path d="M235 162 L265 162 M236 176 L264 176" opacity=".55" />
+          </g>
+
+          <!-- Corrugation stringers on S-IC -->
+          <g class="bp-faint" stroke="currentColor" stroke-width=".8">
+            <path d="M224 556 L224 720 M240 556 L240 720 M260 556 L260 720 M276 556 L276 720" opacity=".45" />
+          </g>
+
+          <!-- ============ INTERNAL TANK DOMES (dashed) ============ -->
+          <g class="bp-faint" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4">
+            <ellipse cx="250" cy="252" rx="20" ry="9" />
+            <ellipse cx="250" cy="300" rx="20" ry="9" />
+            <ellipse cx="250" cy="418" rx="31" ry="13" />
+            <ellipse cx="250" cy="492" rx="31" ry="13" />
+            <ellipse cx="250" cy="596" rx="31" ry="13" />
+            <ellipse cx="250" cy="690" rx="31" ry="13" />
+          </g>
+
+          <!-- Exhaust plume -->
+          <g class="bp-faint" stroke="currentColor" stroke-width="1">
+            <path d="M228 794 L212 878 M250 796 L250 888 M272 794 L288 878" opacity=".55" />
+            <path d="M240 796 L226 862 M260 796 L274 862" stroke-dasharray="3 5" opacity=".4" />
+          </g>
+
+          <!-- ============ DIMENSIONS ============ -->
+          <g class="bp-dim" stroke="currentColor" stroke-width="1">
+            <!-- S-IC base diameter -->
+            <path d="M216 566 L284 566" marker-start="url(#dimS)" marker-end="url(#dim)" />
+            <!-- S-IVB diameter -->
+            <path d="M228 262 L272 262" marker-start="url(#dimS)" marker-end="url(#dim)" />
+          </g>
+          <g class="bp-dim" fill="currentColor" font-family="'JetBrains Mono', monospace" font-size="9" letter-spacing=".5" text-anchor="middle">
+            <text x="250" y="562">&#8709; 10.1 m</text>
+            <text x="250" y="258">&#8709; 6.6 m</text>
+          </g>
+
+          <!-- ============ CALLOUTS (right) ============ -->
+          <g class="bp-anno" stroke="currentColor" stroke-width="1">
+            <path d="M256 96 L338 96 M254 90 L256 96" />
+            <path d="M266 168 L300 168" />
+            <path d="M272 258 L300 258" />
+            <path d="M272 332 L300 332" />
+            <path d="M284 440 L300 440" />
+            <path d="M284 642 L300 642" />
+            <path d="M288 742 L300 742" />
+          </g>
+          <g class="bp-anno" stroke="currentColor" stroke-width="1">
+            <rect x="300" y="88" width="15" height="15" rx="1.5" />
+            <rect x="300" y="160" width="15" height="15" rx="1.5" />
+            <rect x="300" y="250" width="15" height="15" rx="1.5" />
+            <rect x="300" y="324" width="15" height="15" rx="1.5" />
+            <rect x="300" y="432" width="15" height="15" rx="1.5" />
+            <rect x="300" y="634" width="15" height="15" rx="1.5" />
+            <rect x="300" y="734" width="15" height="15" rx="1.5" />
+          </g>
+          <g class="bp-label" fill="currentColor" font-family="'JetBrains Mono', monospace" font-size="9.5" letter-spacing=".5">
+            <text x="307.5" y="99.5" text-anchor="middle" font-weight="600">01</text>
+            <text x="307.5" y="171.5" text-anchor="middle" font-weight="600">02</text>
+            <text x="307.5" y="261.5" text-anchor="middle" font-weight="600">03</text>
+            <text x="307.5" y="335.5" text-anchor="middle" font-weight="600">04</text>
+            <text x="307.5" y="443.5" text-anchor="middle" font-weight="600">05</text>
+            <text x="307.5" y="645.5" text-anchor="middle" font-weight="600">06</text>
+            <text x="307.5" y="745.5" text-anchor="middle" font-weight="600">07</text>
+          </g>
+          <g class="bp-label" fill="currentColor" font-family="'JetBrains Mono', monospace" font-size="9.5" letter-spacing=".5">
+            <text x="324" y="99.5">LAUNCH ESCAPE</text>
+            <text x="324" y="171.5">COMMAND / SERVICE</text>
+            <text x="324" y="261.5">S-IVB · 3RD STAGE</text>
+            <text x="324" y="335.5">INSTRUMENT UNIT</text>
+            <text x="324" y="443.5">S-II · 2ND STAGE</text>
+            <text x="324" y="645.5">S-IC · 1ST STAGE</text>
+            <text x="324" y="745.5">5&#215; F-1 ENGINE</text>
+          </g>
+
+          <!-- ============ VIEW B-B — aft engine layout (right gap) ============ -->
+          <g class="bp-inset" stroke="currentColor" fill="none" stroke-width="1">
+            <circle cx="400" cy="548" r="36" />
+            <!-- quincunx: 4 outer + 1 centre -->
+            <circle cx="400" cy="548" r="7" />
+            <circle cx="400" cy="528" r="7" />
+            <circle cx="400" cy="568" r="7" />
+            <circle cx="380" cy="548" r="7" />
+            <circle cx="420" cy="548" r="7" />
+            <!-- fins at 45 deg -->
+            <path d="M386 534 L376 524 M414 534 L424 524 M386 562 L376 572 M414 562 L424 572" stroke-dasharray="2 3" opacity=".7" />
+          </g>
+          <g class="bp-inset" fill="currentColor" font-family="'JetBrains Mono', monospace" font-size="8" letter-spacing=".5" text-anchor="middle">
+            <text x="400" y="600">VIEW B-B &#183; 5&#215; F-1</text>
+          </g>
+
+          <!-- ============ TITLE BLOCK (pocket beside readouts) ============ -->
+          <g class="bp-title" stroke="currentColor" stroke-width="1">
+            <rect x="22" y="604" width="168" height="92" />
+            <path d="M22 622 L190 622 M22 650 L190 650 M22 676 L190 676 M120 676 L120 696" />
+          </g>
+          <g class="bp-title" fill="currentColor" font-family="'JetBrains Mono', monospace" letter-spacing=".3">
+            <text x="30" y="616" font-size="8" font-weight="600">PIXELGARAGE AEROSPACE DIV.</text>
+            <text x="30" y="641" font-size="11" font-weight="600">LV-PG01 &#8220;SATURN&#8221;</text>
+            <text x="30" y="661" font-size="7" opacity=".85">HEIGHT 110.6 m &#183; &#8709; 10.1 m</text>
+            <text x="30" y="671" font-size="7" opacity=".85">SCALE 1:400 &#183; UNITS m</text>
+            <text x="30" y="689" font-size="7.5" opacity=".85">DRN SA &#183; CHK DA</text>
+            <text x="126" y="689" font-size="7.5" font-weight="600">SHEET 01/01</text>
+          </g>
+
+          <!-- Registration crosshairs -->
+          <g class="bp-faint" stroke="currentColor" stroke-width="1" opacity=".5">
+            <path d="M40 140 l0 10 M35 145 l10 0" />
+            <path d="M456 96 l0 10 M451 101 l10 0" />
+            <path d="M456 820 l0 10 M451 825 l10 0" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="hero-inner">
+        <div class="sec-topic">Topic</div>
+        <h1 class="hero-h">We Build &amp;<br>Ship Software</h1>
+        <p class="hero-lede">
+          PixelGarage is a software studio that designs and builds iOS &amp; Android apps,
+          custom websites and the backends behind them — engineered from scratch and taken
+          all the way to launch. One accountable team handles design, mobile, web and backend,
+          so you go from first idea to a live, production-ready product without handoffs,
+          templates or black boxes.
         </p>
-        <div class="hero-cta">
-          <a href="#contact" class="btn btn-lg">Start a Project</a>
-          <a href="#work" class="btn btn-ghost btn-lg">▶ See Our Work</a>
-        </div>
-        <div class="hero-stats">
-          <div><b>₹4.5L+</b><span>In revenue</span></div>
-          <div><b>Multiple</b><span>Projects shipped</span></div>
-          <div><b>25</b><span>Testers</span></div>
-        </div>
-      </div>
 
-      <!-- pixel-art canvas illustration -->
-      <div class="hero-art">
-        <div class="window">
-          <div class="window-bar">
-            <span class="dot dot-r"></span>
-            <span class="dot dot-y"></span>
-            <span class="dot dot-g"></span>
-            <em>pixelgarage — maze</em>
+        <div class="hero-readouts">
+          <div class="readout">
+            <div class="ro-label">Products Live</div>
+            <div class="ro-value">02</div>
           </div>
-          <div class="window-body">
-            <div class="canvas" id="pixelCanvas" role="img" aria-label="A pixel-art Pac-Man maze you can draw on"></div>
-            <div class="palette" id="palette"></div>
+          <div class="readout">
+            <div class="ro-label">Studio Code</div>
+            <div class="ro-value">PG-01</div>
           </div>
         </div>
-        <div class="float-chip chip-1">iOS + Android</div>
-        <div class="float-chip chip-2">✎ from scratch</div>
-        <div class="float-chip chip-3">◷ backend</div>
+
+        <div class="hero-graph">
+          <div class="graph-card">
+            <div class="graph-label">Delivery<br>Velocity</div>
+            <svg viewBox="0 0 180 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 90 L174 90 M6 90 L6 6" stroke="currentColor" stroke-width="1" opacity=".35" />
+              <path d="M6 66 L174 66 M6 42 L174 42 M6 18 L174 18" stroke="currentColor" stroke-width=".8" stroke-dasharray="2 4" opacity=".25" />
+              <path d="M6 84 C56 82 78 60 104 40 C130 22 150 16 174 12" stroke="currentColor" stroke-width="1.6" fill="none" />
+            </svg>
+          </div>
+          <p class="graph-note">
+            Today, one team takes your product from scope to launch — design, mobile, web and
+            backend under a single roof. Every release is checked by 25 testers before it goes
+            anywhere near production, and you own the code, backend and accounts at go-live.
+          </p>
+        </div>
       </div>
     </section>
 
-    <!-- ===== MARQUEE ===== -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>iOS ✦ ANDROID ✦ WEBSITES ✦ BACKEND ✦ APIs ✦ UI/UX ✦ LAUNCH ✦ iOS ✦ ANDROID ✦ WEBSITES ✦ BACKEND ✦ APIs ✦ UI/UX ✦ LAUNCH ✦</span>
-        <span>iOS ✦ ANDROID ✦ WEBSITES ✦ BACKEND ✦ APIs ✦ UI/UX ✦ LAUNCH ✦ iOS ✦ ANDROID ✦ WEBSITES ✦ BACKEND ✦ APIs ✦ UI/UX ✦ LAUNCH ✦</span>
+    <!-- ---------- MISSION PARAMETERS (stats) ---------- -->
+    <section class="params">
+      <div class="param reveal">
+        <span class="param-n" data-target="4.5" data-decimals="1" data-prefix="₹" data-suffix="L+">0</span>
+        <span class="param-l">Revenue Delivered</span>
       </div>
-    </div>
-
-    <!-- ===== PAC-MAN CHASE ===== -->
-    <section class="pacman-strip" aria-label="Pac-Man chase animation">
-      <div class="pac-lane" aria-hidden="true">
-        <span class="dots">
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-          <i></i><i></i><i></i><i></i><i class="power"></i>
-        </span>
-        <div class="chase">
-          <span class="pac"></span>
-          <span class="ghost ghost--red"><b></b><b></b></span>
-          <span class="ghost ghost--pink"><b></b><b></b></span>
-          <span class="ghost ghost--cyan"><b></b><b></b></span>
-          <span class="ghost ghost--orange"><b></b><b></b></span>
-        </div>
+      <div class="param reveal" style="transition-delay:.07s">
+        <span class="param-n" data-target="2" data-pad="2">0</span>
+        <span class="param-l">Products In Production</span>
       </div>
-      <p class="pac-tag">▚ FROM IDEA ▚ TO LAUNCH ▚ SHIPPED ▚</p>
-    </section>
-    </div><!-- /.hero-screen -->
-
-    <!-- ===== SERVICES ===== -->
-    <section class="section" id="services">
-      <div class="section-head">
-        <span class="eyebrow">◆ WHAT WE DO</span>
-        <h2>Everything it takes<br />to ship a product.</h2>
+      <div class="param reveal" style="transition-delay:.14s">
+        <span class="param-n" data-target="25" data-pad="2">0</span>
+        <span class="param-l">Testers Per Release</span>
       </div>
-      <div class="feature-grid">
-        <article class="card" style="--c:#ff5c39">
-          <div class="card-icon">▤</div>
-          <h3>iOS &amp; Android Apps</h3>
-          <p>Native-quality mobile apps for your company and your clients, built for the App Store &amp; Play Store.</p>
-        </article>
-        <article class="card" style="--c:#00c2a8">
-          <div class="card-icon">◈</div>
-          <h3>Websites From Scratch</h3>
-          <p>Fast, responsive websites designed and coded to match your brand — no templates, all custom.</p>
-        </article>
-        <article class="card" style="--c:#7c5cff">
-          <div class="card-icon">◨</div>
-          <h3>Backend &amp; APIs</h3>
-          <p>Secure, scalable servers, databases and APIs. We build the backend and hand you full ownership.</p>
-        </article>
-        <article class="card" style="--c:#ffd23f">
-          <div class="card-icon">✎</div>
-          <h3>Product Design</h3>
-          <p>UX &amp; UI designed before a line of code is written, so what we build actually feels good to use.</p>
-        </article>
-        <article class="card" style="--c:#ff5c9e">
-          <div class="card-icon">⇪</div>
-          <h3>Launch &amp; Deploy</h3>
-          <p>Store submissions, hosting and a smooth go-live — we take it all the way to production.</p>
-        </article>
-        <article class="card" style="--c:#39a0ff">
-          <div class="card-icon">◷</div>
-          <h3>Support &amp; Updates</h3>
-          <p>Bug fixes, iterations and updates after launch. We stay on to keep your product healthy.</p>
-        </article>
+      <div class="param reveal" style="transition-delay:.21s">
+        <span class="param-n" data-target="100" data-suffix="%">0</span>
+        <span class="param-l">Custom-Built · You Own It</span>
       </div>
     </section>
 
-    <!-- ===== OUR WORK / SPLIT ===== -->
-    <section class="section section-alt" id="work">
-      <div class="split">
-        <div class="split-art">
-          <div class="tool-stack">
-            <div class="tool-row active"><span class="sw" style="background:#ff5c39"></span> Mount Valley School</div>
-            <div class="tool-row"><span class="sw" style="background:#00c2a8"></span> RoomAdda</div>
-            <div class="tool-row"><span class="sw" style="background:#7c5cff"></span> Web ✦ Backend</div>
-            <div class="tool-row"><span class="sw" style="background:#ffd23f"></span> iOS ✦ Android</div>
-            <div class="tool-row"><span class="sw" style="background:#ff5c9e"></span> UI / UX Design</div>
-            <div class="tool-row"><span class="sw" style="background:#39a0ff"></span> Tested by 25 testers</div>
+    <!-- ---------- CREW (TEAM) ---------- -->
+    <section id="crew" class="block">
+      <header class="block-head reveal">
+        <div class="sec-topic">Crew Manifest</div>
+        <h2 class="sec-h">The People<br>On The Build.</h2>
+        <p class="sec-lede">Founder-led and hands-on — the people who scope your project are the same
+          ones who design, build and launch it. No layers, no handoffs.</p>
+      </header>
+
+      <ol class="crew-list">
+        <li class="crew-row reveal">
+          <span class="cr-idx">01</span>
+          <span class="cr-mono">SA</span>
+          <span class="cr-name">Saran Adhith</span>
+          <span class="cr-role">Founder</span>
+          <span class="cr-tag">Apps · Backend · Launch</span>
+        </li>
+        <li class="crew-row reveal">
+          <span class="cr-idx">02</span>
+          <span class="cr-mono">DA</span>
+          <span class="cr-name">Daraneesh</span>
+          <span class="cr-role">Co-Founder</span>
+          <span class="cr-tag">Design · UX · Web</span>
+        </li>
+        <li class="crew-row reveal">
+          <span class="cr-idx">03</span>
+          <span class="cr-mono">AJ</span>
+          <span class="cr-name">Alwin Joseph</span>
+          <span class="cr-role">Co-Founder</span>
+          <span class="cr-tag">Apps · Web · Delivery</span>
+        </li>
+        <li class="crew-row reveal">
+          <span class="cr-idx">04</span>
+          <span class="cr-mono">PU</span>
+          <span class="cr-name">Puranjothi</span>
+          <span class="cr-role">Android Developer</span>
+          <span class="cr-tag">Android · Mobile</span>
+        </li>
+        <li class="crew-row reveal">
+          <span class="cr-idx">05</span>
+          <span class="cr-mono">NE</span>
+          <span class="cr-name">Neha</span>
+          <span class="cr-role">iOS Developer</span>
+          <span class="cr-tag">iOS · Mobile</span>
+        </li>
+        <li class="crew-row reveal">
+          <span class="cr-idx">06</span>
+          <span class="cr-mono">JA</span>
+          <span class="cr-name">Jasmine</span>
+          <span class="cr-role">Intern</span>
+          <span class="cr-tag">Intern</span>
+        </li>
+        <li class="crew-row reveal">
+          <span class="cr-idx">07</span>
+          <span class="cr-mono">TE</span>
+          <span class="cr-name">Tejas</span>
+          <span class="cr-role">Intern</span>
+          <span class="cr-tag">Intern</span>
+        </li>
+        <li class="crew-row reveal">
+          <span class="cr-idx">08</span>
+          <span class="cr-mono">MI</span>
+          <span class="cr-name">Michael</span>
+          <span class="cr-role">Intern</span>
+          <span class="cr-tag">Intern</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ---------- WORK (MISSION LOG) ---------- -->
+    <section id="work" class="block">
+      <header class="block-head reveal">
+        <div class="sec-topic">Mission Log</div>
+        <h2 class="sec-h">Products<br>We've Shipped.</h2>
+        <p class="sec-lede">Real products, live and in real hands — each built end to end, from design
+          to backend to launch. Filter the log by discipline.</p>
+      </header>
+
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="apps">Apps</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="backend">Backend</button>
+      </div>
+
+      <div class="log-grid">
+        <article class="log-card reveal" data-category="web backend">
+          <div class="log-top">
+            <span class="log-idx">LOG-01</span>
+            <span class="log-status"><i class="dot"></i>Live</span>
           </div>
-        </div>
-        <div class="split-copy">
-          <span class="eyebrow">◆ OUR WORK</span>
-          <h2>Products we've shipped.</h2>
-          <p>Multiple projects live and in real hands — including a platform for <b>Mount Valley School</b> and the <b>RoomAdda</b> booking product — each built end-to-end, from design to backend to launch.</p>
-          <ul class="check-list">
-            <li>Mount Valley School — web + backend build</li>
-            <li>RoomAdda — app + backend for rooms &amp; stays</li>
-            <li>₹4.5L+ in revenue so far</li>
-            <li>Every release checked by 25 testers</li>
+          <h3 class="log-name">Mount Valley School</h3>
+          <div class="log-class">Web + Backend</div>
+          <p class="log-desc">A custom platform built for the school — front-end and backend engineered
+            from scratch, designed to be fast, reliable and easy to run day to day.</p>
+          <ul class="log-list">
+            <li>Custom website designed and coded from scratch</li>
+            <li>Secure backend &amp; APIs, handed over with full ownership</li>
+            <li>Launched to production and running live</li>
           </ul>
-          <a href="#contact" class="btn">Build with us</a>
+          <div class="badges">
+            <span class="badge">Custom Website</span>
+            <span class="badge">Backend</span>
+            <span class="badge">APIs</span>
+            <span class="badge">Live</span>
+          </div>
+        </article>
+
+        <article class="log-card reveal" data-category="apps backend" style="transition-delay:.06s">
+          <div class="log-top">
+            <span class="log-idx">LOG-02</span>
+            <span class="log-status"><i class="dot"></i>Live</span>
+          </div>
+          <h3 class="log-name">RoomAdda</h3>
+          <div class="log-class">App + Backend</div>
+          <p class="log-desc">A booking product for rooms and stays — mobile app and backend built together,
+            from listing and search through to booking, tested release after release.</p>
+          <ul class="log-list">
+            <li>iOS &amp; Android app built from scratch</li>
+            <li>Booking backend: listings, search and reservations</li>
+            <li>25-tester QA on every release</li>
+          </ul>
+          <div class="badges">
+            <span class="badge">iOS &amp; Android</span>
+            <span class="badge">Booking Backend</span>
+            <span class="badge">QA</span>
+          </div>
+        </article>
+
+        <article class="log-card reveal" data-category="backend" style="transition-delay:.12s">
+          <div class="log-top">
+            <span class="log-idx">LOG-03</span>
+            <span class="log-status"><i class="dot"></i>Running</span>
+          </div>
+          <h3 class="log-name">GTM Automation Stack</h3>
+          <div class="log-class">AI + Automation</div>
+          <p class="log-desc">100+ AI automation workflows deployed for CommunityTracker.ai — the full content,
+            outreach and intelligence pipeline, architected and maintained on a self-hosted VPS.</p>
+          <ul class="log-list">
+            <li>Self-hosted n8n on a Hostinger VPS</li>
+            <li>6 core workflow suites: content, outreach, competitor intel</li>
+            <li>Claude + OpenRouter + HubSpot + Slack + Google Sheets</li>
+          </ul>
+          <div class="badges">
+            <span class="badge">n8n</span>
+            <span class="badge">Claude</span>
+            <span class="badge">OpenRouter</span>
+            <span class="badge">HubSpot</span>
+            <span class="badge">Slack</span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Architecture schematic -->
+      <div class="arch reveal">
+        <div class="arch-cap">Fig. 01 — Pipeline Architecture · CommunityTracker.ai GTM Stack</div>
+        <div class="arch-scroll">
+          <svg viewBox="0 0 860 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="ar" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0 L0 6 L7 3z" fill="currentColor"/></marker>
+            </defs>
+            <g stroke="currentColor" fill="none" stroke-width="1.1">
+              <rect x="8" y="68" width="108" height="38" rx="2" />
+              <line x1="116" y1="87" x2="140" y2="87" marker-end="url(#ar)" />
+              <rect x="142" y="58" width="120" height="58" rx="2" />
+              <line x1="262" y1="87" x2="286" y2="87" marker-end="url(#ar)" />
+              <rect x="288" y="58" width="118" height="58" rx="2" class="arch-fill" />
+              <line x1="406" y1="74" x2="448" y2="46" marker-end="url(#ar)" opacity=".7" />
+              <line x1="406" y1="87" x2="448" y2="87" marker-end="url(#ar)" opacity=".7" />
+              <line x1="406" y1="100" x2="448" y2="128" marker-end="url(#ar)" opacity=".7" />
+              <rect x="450" y="28" width="115" height="33" rx="2" />
+              <rect x="450" y="71" width="115" height="33" rx="2" />
+              <rect x="450" y="114" width="115" height="33" rx="2" />
+              <line x1="565" y1="44" x2="603" y2="72" marker-end="url(#ar)" opacity=".7" />
+              <line x1="565" y1="87" x2="603" y2="87" marker-end="url(#ar)" opacity=".7" />
+              <line x1="565" y1="130" x2="603" y2="102" marker-end="url(#ar)" opacity=".7" />
+              <rect x="605" y="58" width="125" height="58" rx="2" />
+              <rect x="748" y="60" width="98" height="54" rx="2" stroke-dasharray="4 3" opacity=".6" />
+            </g>
+            <g fill="currentColor" font-family="'JetBrains Mono', monospace" font-size="9.5" text-anchor="middle">
+              <text x="62" y="84">Cron</text>
+              <text x="202" y="83">CT API</text>
+              <text x="507" y="48">Google Sheets</text>
+              <text x="507" y="91">HubSpot CRM</text>
+              <text x="507" y="134">Slack</text>
+              <text x="797" y="84">n8n</text>
+            </g>
+            <g fill="currentColor" font-family="'Archivo', sans-serif" font-size="8.5" text-anchor="middle" opacity=".6">
+              <text x="62" y="97">Webhook</text>
+              <text x="202" y="96">Signal Fetch</text>
+              <text x="202" y="108">+ Scoring</text>
+              <text x="667" y="82">Output Delivery</text>
+              <text x="667" y="96">Content · Alerts</text>
+              <text x="667" y="108">CRM Updates</text>
+              <text x="797" y="99">self-hosted VPS</text>
+            </g>
+            <g font-family="'JetBrains Mono', monospace" font-size="9.5" text-anchor="middle" font-weight="600">
+              <text x="347" y="83" class="arch-invert">Claude</text>
+              <text x="347" y="96" class="arch-invert" font-family="'Archivo', sans-serif" font-size="8.5" font-weight="400" opacity=".7">OpenRouter</text>
+              <text x="347" y="108" class="arch-invert" font-family="'Archivo', sans-serif" font-size="8" font-weight="400" opacity=".7">AI Processing</text>
+            </g>
+          </svg>
         </div>
       </div>
     </section>
 
-    <!-- ===== GALLERY ===== -->
-    <section class="section" id="gallery">
-      <div class="section-head center">
-        <span class="eyebrow">◆ THE CREW</span>
-        <h2>A little pixel personality.</h2>
-        <p class="section-sub">Tap or hover a sprite to meet the crew behind PixelGarage.</p>
+    <!-- ---------- PROCESS (FLIGHT PLAN) ---------- -->
+    <section id="process" class="block">
+      <header class="block-head reveal">
+        <div class="sec-topic">Flight Plan</div>
+        <h2 class="sec-h">Idea To Launch,<br>In Four Phases.</h2>
+        <p class="sec-lede">No black boxes. You always know what we're building, why, and what's next —
+          from the first call to the day it ships.</p>
+      </header>
+
+      <div class="phase-list">
+        <article class="phase reveal">
+          <div class="phase-l">
+            <span class="phase-t">T-04</span>
+            <h3 class="phase-name">Discover</h3>
+            <span class="phase-sub">Scope &amp; plan</span>
+          </div>
+          <div class="phase-r">
+            <p class="phase-cap">We dig into your goals, users and constraints before a line of code is written.</p>
+            <ul class="phase-ul">
+              <li>Map out goals, users and real-world constraints together</li>
+              <li>Scope the work into a plan with <strong>clear milestones</strong></li>
+              <li>Agree timeline and cost upfront — no surprises later</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="phase reveal">
+          <div class="phase-l">
+            <span class="phase-t">T-03</span>
+            <h3 class="phase-name">Design</h3>
+            <span class="phase-sub">Flows &amp; screens</span>
+          </div>
+          <div class="phase-r">
+            <ul class="phase-ul">
+              <li>Design the flows and screens first, so you can <strong>see the product before we build it</strong></li>
+              <li>Shape the experience together — no surprises once code starts</li>
+              <li>Interfaces designed to actually feel good to use</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="phase reveal">
+          <div class="phase-l">
+            <span class="phase-t">T-02</span>
+            <h3 class="phase-name">Build</h3>
+            <span class="phase-sub">App · Web · Backend</span>
+          </div>
+          <div class="phase-r">
+            <ul class="phase-ul">
+              <li>Engineer the app, website and backend in <strong>tight iterations</strong></li>
+              <li>Every release checked by 25 testers before production</li>
+              <li>Regular working previews and a direct line to the builders</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="phase reveal">
+          <div class="phase-l">
+            <span class="phase-t">T-00</span>
+            <h3 class="phase-name">Launch</h3>
+            <span class="phase-sub">Deploy &amp; support</span>
+          </div>
+          <div class="phase-r">
+            <ul class="phase-ul">
+              <li>Store submissions, hosting and a <strong>smooth go-live</strong></li>
+              <li>Hand over full ownership of code and accounts</li>
+              <li>Stay on for updates, fixes and iterations as you grow</li>
+            </ul>
+          </div>
+        </article>
       </div>
-      <div class="gallery" id="gallery-grid"></div>
     </section>
 
-    <!-- ===== TEAM / FOUNDERS ===== -->
-    <section class="section section-alt" id="team">
-      <div class="section-head center">
-        <span class="eyebrow">◆ THE FOUNDERS</span>
-        <h2>The people behind PixelGarage.</h2>
-        <p class="section-sub">A small, hands-on team that builds every product ourselves.</p>
-      </div>
-      <div class="team-grid">
-        <article class="member">
-          <div class="avatar" aria-label="Pixel Pac-Man">
-            <span class="pac"></span>
-          </div>
-          <h3>Saran Adhith</h3>
-          <p class="role">Co-Founder</p>
-          <span class="member-tag">▚ Apps · Backend · Launch</span>
-        </article>
-        <article class="member">
-          <div class="avatar" aria-label="Red pixel ghost">
-            <span class="ghost ghost--red"><b></b><b></b></span>
-          </div>
-          <h3>Alwin Joseph</h3>
-          <p class="role">Co-Founder</p>
-          <span class="member-tag">▚ Apps · Web · Delivery</span>
-        </article>
-        <article class="member">
-          <div class="avatar" aria-label="Cyan pixel ghost">
-            <span class="ghost ghost--cyan"><b></b><b></b></span>
-          </div>
-          <h3>Daraneesh</h3>
-          <p class="role">Co-Founder</p>
-          <span class="member-tag">▚ Design · UX · Web</span>
-        </article>
-      </div>
-    </section>
+    <!-- ---------- STACK (PAYLOAD) ---------- -->
+    <section id="stack" class="block">
+      <header class="block-head reveal">
+        <div class="sec-topic">Payload</div>
+        <h2 class="sec-h">Modern, Proven<br>Instruments.</h2>
+        <p class="sec-lede">The actual stack we ship with — chosen for speed, reliability and long-term
+          maintainability, not hype.</p>
+      </header>
 
-    <!-- ===== CTA ===== -->
-    <section class="cta" id="contact">
-      <div class="cta-inner">
-        <h2>Have an idea in mind?<br />Bring it to the garage.</h2>
-        <p>Tell us about your app, website or backend and we'll take it from idea to launch.</p>
-        <div class="hero-cta center">
-          <a href="mailto:pixelgarage.info@gmail.com" class="btn btn-lg">Get in Touch</a>
-          <a href="#work" class="btn btn-ghost btn-lg">See Our Work</a>
+      <div class="stack-grid">
+        <div class="stack-cat reveal">
+          <div class="sc-label"><span class="sc-code">SYS-01</span> Mobile</div>
+          <div class="sc-items"><span>Swift</span><span>SwiftUI</span><span>Kotlin</span><span>Jetpack Compose</span><span>React Native</span></div>
         </div>
-        <p class="cta-mail">✉ <a href="mailto:pixelgarage.info@gmail.com">pixelgarage.info@gmail.com</a></p>
+        <div class="stack-cat reveal" style="transition-delay:.06s">
+          <div class="sc-label"><span class="sc-code">SYS-02</span> Web</div>
+          <div class="sc-items"><span>React</span><span>Next.js</span><span>TypeScript</span><span>Tailwind CSS</span><span>Vite</span></div>
+        </div>
+        <div class="stack-cat reveal" style="transition-delay:.12s">
+          <div class="sc-label"><span class="sc-code">SYS-03</span> Backend</div>
+          <div class="sc-items"><span>Node.js</span><span>Express</span><span>GraphQL</span><span>REST APIs</span><span>Firebase</span></div>
+        </div>
+        <div class="stack-cat reveal">
+          <div class="sc-label"><span class="sc-code">SYS-04</span> Databases</div>
+          <div class="sc-items"><span>PostgreSQL</span><span>MongoDB</span><span>Redis</span></div>
+        </div>
+        <div class="stack-cat reveal" style="transition-delay:.06s">
+          <div class="sc-label"><span class="sc-code">SYS-05</span> Cloud &amp; Infra</div>
+          <div class="sc-items"><span>AWS</span><span>Docker</span><span>CI/CD</span><span>Cloud Hosting</span></div>
+        </div>
+        <div class="stack-cat reveal" style="transition-delay:.12s">
+          <div class="sc-label"><span class="sc-code">SYS-06</span> Payments &amp; Services</div>
+          <div class="sc-items"><span>Stripe</span><span>Firebase Auth</span><span>Push / Notifications</span></div>
+        </div>
+        <div class="stack-cat reveal">
+          <div class="sc-label"><span class="sc-code">SYS-07</span> Design &amp; Tools</div>
+          <div class="sc-items"><span>Figma</span><span>Git &amp; GitHub</span><span>Postman</span></div>
+        </div>
+        <div class="stack-fill reveal" aria-hidden="true">// 07 Systems · All Nominal</div>
       </div>
     </section>
+
+    <!-- ---------- FAQ (BRIEFING) ---------- -->
+    <section id="faq" class="block">
+      <header class="block-head reveal">
+        <div class="sec-topic">Briefing</div>
+        <h2 class="sec-h">Good To Know<br>Before We Start.</h2>
+        <p class="sec-lede">The things founders usually ask us first — answered upfront.</p>
+      </header>
+
+      <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary>What kinds of projects do you take on?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <p>iOS &amp; Android apps, custom websites, and the backends and APIs behind them. We can build one piece or the whole product end to end.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do you build from scratch or use templates?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <p>Everything is designed and coded from scratch to fit your brand and needs — no off-the-shelf templates.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Who owns the code and product?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <p>You do. We hand over full ownership of the code, backend and accounts at launch.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do you support the product after launch?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <p>Yes — we stay on for bug fixes, updates and iterations to keep your product healthy as it grows.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How long does a typical project take?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <p>Most projects ship in 4–12 weeks depending on scope. After scoping, we share a clear timeline with milestones so you always know what's coming next.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How much does a project cost?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <p>Pricing depends on scope and complexity. We quote upfront with no surprises — you'll know the full cost and payment milestones before we start building.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can you work with our existing team or codebase?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <p>Absolutely. We can build alongside your in-house team, pick up an existing codebase, or take a project the full way on our own — whatever fits your setup.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do we get started?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <p>Tell us about your idea using the form below or email us directly. We'll reply, scope the work, and share clear milestones.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ---------- CONTACT (OPEN CHANNEL) ---------- -->
+    <section id="contact" class="block">
+      <header class="block-head reveal">
+        <div class="sec-topic">Open Channel</div>
+        <h2 class="sec-h">Have An Idea?<br>Let's Build It.</h2>
+        <p class="sec-lede">Tell us about your app, website or backend and we'll take it from idea to
+          launch. We usually reply within a day.</p>
+      </header>
+
+      <div class="contact-grid">
+        <div class="contact-links reveal">
+          <a href="mailto:pixelgarage.info@gmail.com" class="c-link">
+            <span class="cl-mono">TX</span>
+            <span><span class="cl-label">Email</span><span class="cl-value">pixelgarage.info@gmail.com</span></span>
+          </a>
+          <a href="#work" class="c-link">
+            <span class="cl-mono">LG</span>
+            <span><span class="cl-label">Mission Log</span><span class="cl-value">Live products, shipped</span></span>
+          </a>
+          <a href="#stack" class="c-link">
+            <span class="cl-mono">SY</span>
+            <span><span class="cl-label">Payload</span><span class="cl-value">Apps · Web · Backend</span></span>
+          </a>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" placeholder="you@company.com" required />
+          </div>
+          <div class="field">
+            <label for="cf-type">What do you need?</label>
+            <select id="cf-type" name="type">
+              <option>Mobile app (iOS / Android)</option>
+              <option>Website</option>
+              <option>Backend / API</option>
+              <option>Full product (design → launch)</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cf-msg">Project details</label>
+            <textarea id="cf-msg" name="message" rows="4" placeholder="A few lines about what you want to build..." required></textarea>
+          </div>
+          <button type="submit" class="btn-send">Transmit project brief <span aria-hidden="true">→</span></button>
+          <p class="form-note" id="formNote" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ---------- FOOTER ---------- -->
+    <footer class="footer">
+      <div class="foot-row">
+        <span class="foot-mark">PixelGarage</span>
+        <span>Software Studio — apps, websites &amp; backends, built from scratch to launch.</span>
+      </div>
+      <div class="foot-row foot-meta">
+        <span>Shipped for Mount Valley School &amp; RoomAdda</span>
+        <span><a href="mailto:pixelgarage.info@gmail.com">pixelgarage.info@gmail.com</a></span>
+        <span>© <span id="year">2026</span> · Station PG-01</span>
+      </div>
+    </footer>
   </main>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img class="brand-img brand-img--footer" src="logo.png" alt="PixelGarage" width="1254" height="360" />
-        <p>Apps, websites &amp; backends, built from scratch to launch.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Studio</h4>
-        <a href="#services">Services</a>
-        <a href="#work">Work</a>
-        <a href="#gallery">Gallery</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="#team">Team</a>
-        <a href="#contact">Contact</a>
-        <a href="mailto:pixelgarage.info@gmail.com">Email us</a>
-      </div>
-      <div class="footer-col">
-        <h4>Build With Us</h4>
-        <a href="#services">iOS &amp; Android</a>
-        <a href="#services">Websites</a>
-        <a href="#services">Backend &amp; APIs</a>
-      </div>
-    </div>
-    <div class="footer-bar">
-      <span>© 2026 PixelGarage. All rights pixelated.</span>
-      <span class="footer-social">
-        <a href="#">IN</a><a href="#">IG</a><a href="#">YT</a><a href="#">GH</a>
-      </span>
-    </div>
-  </footer>
 
   <script src="script.js"></script>
 </body>

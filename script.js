@@ -1,258 +1,169 @@
 /* ============================================================
-   PIXEL GARAGE — interactivity (Pac-Man themed)
+   PIXELGARAGE — Mission Control interactions
    ============================================================ */
 
-/* ---------- mobile nav ---------- */
-const toggle = document.querySelector('.nav-toggle');
-const links  = document.querySelector('.nav-links');
-toggle?.addEventListener('click', () => {
-  const open = links.classList.toggle('open');
-  toggle.setAttribute('aria-expanded', open);
-});
-links?.addEventListener('click', e => {
-  if (e.target.tagName === 'A') links.classList.remove('open');
-});
+/* ------------------------------------------------------------------
+   LEFT RAIL DRAWER (mobile)
+------------------------------------------------------------------ */
+(function () {
+  const rail = document.getElementById('rail');
+  const toggle = document.getElementById('railToggle');
+  const close = document.getElementById('railClose');
+  if (!rail || !toggle) return;
+  const open = () => rail.classList.add('open');
+  const shut = () => rail.classList.remove('open');
+  toggle.addEventListener('click', open);
+  if (close) close.addEventListener('click', shut);
+  rail.querySelectorAll('a').forEach(a => a.addEventListener('click', shut));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') shut(); });
+})();
 
-/* ---------- palette ---------- */
-const COLORS = ['#00000000', '#1c1633', '#ffe11a', '#ff5c39', '#00c2a8',
-                '#7c5cff', '#ff5c9e', '#39a0ff', '#ffffff'];
-let active = '#ffe11a';
-
-const paletteEl = document.getElementById('palette');
-COLORS.forEach((c) => {
-  const b = document.createElement('b');
-  b.style.background = c === '#00000000'
-    ? 'repeating-conic-gradient(#ddd 0 25%, #fff 0 50%) 0 0/10px 10px'
-    : c;
-  if (c === active) b.classList.add('sel');
-  b.title = c === '#00000000' ? 'eraser' : c;
-  b.addEventListener('click', () => {
-    active = c;
-    paletteEl.querySelectorAll('b').forEach(x => x.classList.remove('sel'));
-    b.classList.add('sel');
+/* ------------------------------------------------------------------
+   SCROLLSPY — active nav underline
+------------------------------------------------------------------ */
+(function () {
+  const links = Array.from(document.querySelectorAll('.topnav a'));
+  if (!links.length || !('IntersectionObserver' in window)) return;
+  const map = new Map();
+  links.forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    const sec = document.getElementById(id);
+    if (sec) map.set(sec, a);
   });
-  paletteEl.appendChild(b);
-});
+  const setActive = (a) => {
+    links.forEach(l => l.classList.toggle('active', l === a));
+  };
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) setActive(map.get(e.target));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  map.forEach((_, sec) => obs.observe(sec));
+})();
 
-/* ---------- hero canvas: a pixel Pac-Man MAZE you can draw on ---------- */
-/* legend: # wall, . pellet, o power pellet, ' ' path,
-   Y pac-man, R/P/C/O ghosts (red/pink/cyan/orange) */
-const MAZE = [
-  '############################',
-  '#............##............#',
-  '#.####.#####.##.#####.####.#',
-  '#o####.#####.##.#####.####o#',
-  '#.####.#####.##.#####.####.#',
-  '#..........................#',
-  '#.####.##.########.##.####.#',
-  '#.####.##.########.##.####.#',
-  '#......##....##....##......#',
-  '######.#####.##.#####.######',
-  '######.#####.##.#####.######',
-  '######.##....R.....##.######',
-  '######.##.###--###.##.######',
-  '######.##.#..PC..#.##.######',
-  '      .##.########.##.      ',
-  '######.##.########.##.######',
-  '######Y##....O.....##.######',
-  '######.#####.##.#####.######',
-  '######.#####.##.#####.######',
-  '#............##............#',
-  '#.####.#####.##.#####.####.#',
-  '#o..##..............##...o.#',
-  '###.##.##.########.##.##.###',
-  '###.##.##.########.##.##.###',
-  '#......##....##....##......#',
-  '#.##########.##.##########.#',
-  '#.##########.##.##########.#',
-  '#..........................#',
-  '############################'
-];
-const MAZE_COLS = MAZE[0].length;
-const MAZE_ROWS = MAZE.length;
-
-const WALL   = '#2121de';                 // maze wall (neon blue)
-const PELLET = '#ffd9b3';                 // pellet / dot
-const GHOSTS = { R: '#ff3b30', P: '#ffb8ff', C: '#19e0e0', O: '#ffb852' };
-const isWall = (x, y) =>
-  y >= 0 && y < MAZE_ROWS && x >= 0 && x < MAZE_COLS && MAZE[y][x] === '#';
-
-// two white eyes with dark pupils layered over the body colour
-const ghostFace = (body) =>
-  `radial-gradient(circle at 34% 44%, #fff 0 22%, #1c1633 22% 34%, transparent 35%),` +
-  `radial-gradient(circle at 66% 44%, #fff 0 22%, #1c1633 22% 34%, transparent 35%),` +
-  `${body}`;
-
-const canvas = document.getElementById('pixelCanvas');
-canvas.style.gridTemplateColumns = `repeat(${MAZE_COLS}, 1fr)`;
-canvas.style.aspectRatio = `${MAZE_COLS} / ${MAZE_ROWS}`;
-
-for (let y = 0; y < MAZE_ROWS; y++) {
-  for (let x = 0; x < MAZE_COLS; x++) {
-    const ch = MAZE[y][x];
-    const cell = document.createElement('i');
-
-    if (ch === '#') {
-      // arcade-style hollow walls: a blue edge is drawn only where a wall cell
-      // faces a corridor, so solid blocks read as thin blue-lined pipes.
-      cell.style.boxSizing = 'border-box';
-      if (!isWall(x, y - 1)) cell.style.borderTop    = `2px solid ${WALL}`;
-      if (!isWall(x, y + 1)) cell.style.borderBottom = `2px solid ${WALL}`;
-      if (!isWall(x - 1, y)) cell.style.borderLeft   = `2px solid ${WALL}`;
-      if (!isWall(x + 1, y)) cell.style.borderRight  = `2px solid ${WALL}`;
-    } else if (ch === 'Y') {
-      // pac-man, mouth open to the right
-      cell.style.background =
-        `conic-gradient(from 125deg at 50% 50%, #ffe11a 0 290deg, transparent 290deg)`;
-      cell.style.borderRadius = '50%';
-      cell.style.transform = 'scale(1.8)';
-      cell.style.position = 'relative';
-      cell.style.zIndex = '2';
-    } else if (GHOSTS[ch]) {
-      cell.style.background = ghostFace(GHOSTS[ch]);
-      cell.style.borderRadius = '50% 50% 16% 16%';
-      cell.style.transform = 'scale(1.7)';
-      cell.style.position = 'relative';
-      cell.style.zIndex = '2';
-    } else if (ch === 'o') {
-      cell.style.background = `radial-gradient(circle, ${PELLET} 0 42%, transparent 44%)`;
-    } else if (ch === '.') {
-      cell.style.background = `radial-gradient(circle, ${PELLET} 0 20%, transparent 22%)`;
-    }
-    canvas.appendChild(cell);
-
-    const paint = () => {
-      cell.style.border = '0';
-      cell.style.borderRadius = '0';
-      cell.style.transform = 'none';
-      cell.style.background = active === '#00000000' ? 'transparent' : active;
-    };
-    cell.addEventListener('mousedown', paint);
-    cell.addEventListener('mouseenter', e => { if (e.buttons === 1) paint(); });
-    cell.addEventListener('touchstart', e => { e.preventDefault(); paint(); }, { passive: false });
+/* ------------------------------------------------------------------
+   REVEAL ON SCROLL
+------------------------------------------------------------------ */
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('revealed'));
+    return;
   }
-}
-canvas.addEventListener('touchmove', e => {
-  const t = e.touches[0];
-  const el = document.elementFromPoint(t.clientX, t.clientY);
-  if (el && el.parentElement === canvas) {
-    el.style.border = '0';
-    el.style.borderRadius = '0';
-    el.style.transform = 'none';
-    el.style.background = active === '#00000000' ? 'transparent' : active;
-  }
-}, { passive: true });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => obs.observe(el));
+})();
 
-/* ---------- gallery: generate colourful pixel sprites ---------- */
-const PAL = ['#ff5c39', '#ffd23f', '#00c2a8', '#7c5cff', '#ff5c9e', '#39a0ff'];
-const BG  = ['#fdf3e3', '#1c1633', '#fce7c8', '#2a2350'];
-
-// hand-made 8x8 sprites, cycled + recoloured
-const SPRITES = [
-  // Pac-Man
-  ['..XXXX..','.XXXXXX.','XXXXX...','XXXX....','XXXX....','XXXXX...','.XXXXXX.','..XXXX..'],
-  // ghost
-  ['..XXXX..','.XXXXXX.','X.XX.X.X','X.XX.X.X','XXXXXXXX','XXXXXXXX','XXXXXXXX','X.X.X.X.'],
-  // cherry
-  ['......X.','.....X..','..XX.X..','.XXXXX..','XXXX.XX.','XXXXXXXX','.XXXXXX.','..XXXX..'],
-  // heart
-  ['.XX..XX.','XXXXXXXX','XXXXXXXX','XXXXXXXX','.XXXXXX.','..XXXX..','...XX...','........'],
-  // mushroom
-  ['..XXXX..','.XXXXXX.','XXXXXXXX','X.XXXX.X','XXXXXXXX','..X..X..','..X..X..','..XXXX..'],
-  // star
-  ['...XX...','...XX...','.XXXXXX.','XXXXXXXX','.XXXXXX.','.XX..XX.','.X....X.','........'],
-  // sword
-  ['......XX','.....XX.','....XX..','.X.XX...','.XXX....','XXX.....','XX......','X.......'],
-  // slime
-  ['........','..XXXX..','.XXXXXX.','XX.XX.XX','XXXXXXXX','XXXXXXXX','.XXXXXX.','X.X..X.X'],
-  // coin
-  ['..XXXX..','.XXXXXX.','XX.XX.XX','XX.XX.XX','XX.XX.XX','XX.XX.XX','.XXXXXX.','..XXXX..'],
-  // potion
-  ['..XX....','..XX....','.XXXX...','.X..X...','XXXXXX..','X....X..','XXXXXX..','.XXXX...'],
-  // fish
-  ['........','..XXXX.X','.XXXXXXX','XXX.XXX.','.XXXXXXX','..XXXX.X','........','........'],
-  // ghost 2 (scared)
-  ['..XXXX..','.XXXXXX.','XXXXXXXX','X.XX.X.X','XXXXXXXX','X.X.X.XX','XXXXXXXX','X.X.X.X.']
-];
-
-/* ---------- the crew: one person per sprite, shown on hover ---------- */
-const TEAM = [
-  { name: 'Saran Adhith', role: 'Founder',           bio: 'Leads the studio — apps, backend & launch.' },
-  { name: 'Alwin Joseph', role: 'Co-Founder',        bio: 'Apps, web & client delivery.' },
-  { name: 'Daraneesh',    role: 'Co-Founder',        bio: 'Design, UX & web builds.' },
-  { name: 'Puranjothi',   role: 'Android Developer', bio: 'Builds our Android apps end to end.' },
-  { name: 'Neha',         role: 'iOS Developer',     bio: 'Crafts native iOS experiences.' },
-  { name: 'Jasmine',      role: 'Intern',            bio: 'Learning the ropes across the stack.' },
-  { name: 'Michael',      role: 'Intern',            bio: 'Hands-on with builds & bug fixes.' },
-  { name: 'Tejas',        role: 'Intern',            bio: 'Helping ship features & tests.' },
-  { name: 'Rahul',        role: 'SEO Analyst',       bio: 'Gets our clients found on search.' },
-  { name: 'Priya',        role: 'QA Tester',         bio: 'Breaks things so users don’t.' },
-  { name: 'Arjun',        role: 'QA Tester',         bio: 'Tests every release before launch.' },
-  { name: 'Sneha',        role: 'UI/UX Designer',    bio: 'Designs clean, friendly interfaces.' },
-];
-
-const grid = document.getElementById('gallery-grid');
-for (let n = 0; n < 12; n++) {
-  const cell = document.createElement('div');
-  cell.className = 'gallery-cell';
-  cell.tabIndex = 0;
-  const bg = BG[n % BG.length];
-  const fg = PAL[(n * 5) % PAL.length];
-  const fg2 = PAL[(n * 3 + 2) % PAL.length];
-  cell.style.background = bg;
-
-  const px = document.createElement('div');
-  px.className = 'px-grid';
-  px.style.gridTemplateColumns = 'repeat(8, 1fr)';
-  px.style.padding = '14%';
-  const s = SPRITES[n % SPRITES.length];
-  for (let y = 0; y < 8; y++) {
-    for (let x = 0; x < 8; x++) {
-      const i = document.createElement('i');
-      if (s[y][x] === 'X') {
-        i.style.background = (x + y) % 3 === 0 ? fg2 : fg;
-      }
-      px.appendChild(i);
-    }
-  }
-  cell.appendChild(px);
-
-  const p = TEAM[n];
-  const info = document.createElement('div');
-  info.className = 'cell-info';
-  info.innerHTML = `<b>${p.name}</b><span>${p.role}</span><em>${p.bio}</em>`;
-  cell.appendChild(info);
-
-  cell.setAttribute('role', 'img');
-  cell.setAttribute('aria-label', `${p.name} — ${p.role}. ${p.bio}`);
-  grid.appendChild(cell);
+/* ------------------------------------------------------------------
+   COUNT-UP (supports prefix / suffix / decimals / zero-pad)
+------------------------------------------------------------------ */
+function countUp(el, steps) {
+  const target = +el.dataset.target;
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  const decimals = +el.dataset.decimals || 0;
+  const pad = +el.dataset.pad || 0;
+  let cur = 0;
+  const step = target / (steps || 80);
+  const fmt = (n) => {
+    let s = decimals ? n.toFixed(decimals) : String(Math.floor(n));
+    if (pad && !decimals) s = s.padStart(pad, '0');
+    return s;
+  };
+  const go = () => {
+    cur = Math.min(cur + step, target);
+    el.textContent = prefix + fmt(cur) + suffix;
+    if (cur < target) requestAnimationFrame(go);
+  };
+  requestAnimationFrame(go);
 }
 
-/* ---------- keep the first screen exactly one viewport tall ---------- */
-/* measure the sticky nav so hero + marquee + pac-man fill the rest of the view */
-const navBar = document.querySelector('.nav');
-const syncNavHeight = () => {
-  if (navBar) document.documentElement.style.setProperty('--nav-h', navBar.offsetHeight + 'px');
-};
-syncNavHeight();
-window.addEventListener('resize', syncNavHeight);
-/* re-measure once the pixel fonts load, since they change the nav's height */
-document.fonts?.ready.then(syncNavHeight);
-
-/* ---------- reveal on scroll ---------- */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = 1;
-      e.target.style.transform = 'none';
-      io.unobserve(e.target);
+/* ------------------------------------------------------------------
+   MISSION PARAMETER COUNTERS (on scroll)
+------------------------------------------------------------------ */
+(function () {
+  const nums = document.querySelectorAll('.param-n[data-target]');
+  if (!nums.length) return;
+  if (!('IntersectionObserver' in window)) {
+    nums.forEach(el => countUp(el, 90));
+    return;
+  }
+  let done = false;
+  const obs = new IntersectionObserver(entries => {
+    if (!done && entries.some(e => e.isIntersecting)) {
+      done = true;
+      nums.forEach(el => countUp(el, 90));
     }
-  });
-}, { threshold: 0.12 });
+  }, { threshold: 0.5 });
+  nums.forEach(el => obs.observe(el));
+})();
 
-document.querySelectorAll('.card, .gallery-cell, .member, .section-head').forEach((el, i) => {
-  el.style.opacity = 0;
-  el.style.transform = 'translateY(16px)';
-  el.style.transition = `opacity .4s steps(4) ${(i % 6) * 40}ms, transform .4s steps(4) ${(i % 6) * 40}ms`;
-  io.observe(el);
+/* ------------------------------------------------------------------
+   MISSION LOG FILTER
+------------------------------------------------------------------ */
+(function () {
+  const btns = document.querySelectorAll('.filter-btn');
+  if (!btns.length) return;
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.log-card').forEach(card => {
+        card.classList.toggle('hidden', f !== 'all' && !card.dataset.category.includes(f));
+      });
+    });
+  });
+})();
+
+/* ------------------------------------------------------------------
+   CONTACT FORM
+------------------------------------------------------------------ */
+(function () {
+  const form = document.getElementById('contactForm');
+  const note = document.getElementById('formNote');
+  if (!form) return;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const type = form.type.value;
+    const message = form.message.value.trim();
+    if (!name || !email || !message) {
+      if (note) { note.style.color = 'var(--ink)'; note.textContent = 'Please fill in your name, email and project details.'; }
+      return;
+    }
+    const subject = encodeURIComponent(`Project brief — ${type} (${name})`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nNeed: ${type}\n\n${message}`);
+    window.location.href = `mailto:pixelgarage.info@gmail.com?subject=${subject}&body=${body}`;
+    if (note) { note.style.color = 'var(--ink2)'; note.textContent = 'Opening your email app… if nothing happens, write to pixelgarage.info@gmail.com'; }
+  });
+})();
+
+/* ------------------------------------------------------------------
+   FOOTER YEAR
+------------------------------------------------------------------ */
+(function () {
+  const y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+})();
+
+/* ------------------------------------------------------------------
+   SMOOTH SCROLL (offset for fixed top bar)
+------------------------------------------------------------------ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    const t = document.querySelector(href);
+    if (!t) return;
+    e.preventDefault();
+    const bar = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--bar')) || 66;
+    const y = t.getBoundingClientRect().top + window.scrollY - bar + 1;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  });
 });
