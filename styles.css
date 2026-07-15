@@ -162,7 +162,7 @@ img{max-width:100%;display:block}
 
 /* blueprint schematic */
 .blueprint{
-  position:absolute;top:-4%;right:-6%;height:112%;width:auto;
+  position:absolute;top:-4%;right:7%;height:112%;width:auto;
   color:var(--ink);opacity:.85;z-index:1;pointer-events:none;
 }
 .blueprint svg{height:100%;width:auto}
