@@ -1,0 +1,92 @@
+# PixelGarage — Software Studio
+
+> PixelGarage is a software studio based in India that designs, builds, and launches iOS & Android mobile applications, custom web applications, and backend API systems from scratch to production. Founded by Saran Adhith, Daraneesh, and Alwin Joseph.
+
+## Entity Disambiguation
+- **Official Name:** PixelGarage
+- **Type:** Software Development Studio / Professional Technology Services
+- **Website:** https://pixelgarage.in
+- **Contact Email:** pixelgarage.info@gmail.com
+- **Country:** India
+- **Founded:** 2024
+- **Founder:** Saran Adhith
+- **Co-Founders:** Daraneesh (CTO), Alwin Joseph (Lead Dev)
+- **Team Size:** 8 core engineers + 25+ QA testers per release
+
+## Studio Mission
+PixelGarage takes software products from first idea to a live, production-ready product — handling design, mobile development, web development, and backend engineering under one accountable team with zero handoffs.
+
+## Key Differentiators
+- One team handles the entire product lifecycle: design → mobile → web → backend → launch
+- Every release is tested by 25+ QA testers before production deployment
+- Clients receive 100% ownership of source code, backend infrastructure, and deployment accounts at launch
+- Custom-built from scratch — no templates, no off-the-shelf solutions
+- Upfront fixed-cost quotes with clear payment milestones and zero hidden fees
+- Founder-led: the people who scope your project are the same ones who build and launch it
+
+## Core Services
+1. **iOS & Android Mobile App Development:** Custom native (SwiftUI, Kotlin Jetpack Compose) and cross-platform (React Native) apps engineered from scratch. App Store and Google Play Store submission included.
+2. **Custom Web Development:** High-performance web applications built with React, Next.js, TypeScript, and modern styling frameworks.
+3. **Backend Engineering & APIs:** Scalable Node.js, Express, PostgreSQL, MongoDB, Redis, GraphQL, and RESTful backends built for security and high delivery velocity.
+4. **AI & GTM Automation Workflows:** Self-hosted n8n automation pipelines integrated with Claude, OpenRouter LLMs, HubSpot CRM, Slack, and Google Sheets.
+
+## Shipped Products & Portfolio
+- **Mount Valley School Platform:** Custom front-end web application and secure backend platform built and operating live in production for Mount Valley School.
+- **RoomAdda Booking App:** Mobile stay and room booking app for iOS and Android, with listing, search, and reservation backend engines, tested release after release.
+- **CommunityTracker.ai GTM Automation Stack:** 100+ AI automation workflows running on a self-hosted Hostinger VPS, powering content generation, competitor intelligence, and outreach for CommunityTracker.ai.
+
+## Revenue & Impact
+- Revenue delivered for clients: ₹4.5 Lakh+
+- Products currently live in production: 2
+- QA testers per release: 25+
+
+## Technology Stack
+- **Mobile:** Swift, SwiftUI, Kotlin, Jetpack Compose, React Native
+- **Web:** React, Next.js, TypeScript, Tailwind CSS, Vite
+- **Backend:** Node.js, Express, GraphQL, REST APIs, Firebase
+- **Databases:** PostgreSQL, MongoDB, Redis
+- **Cloud & Infrastructure:** AWS, Docker, CI/CD pipelines, Hostinger VPS, n8n (self-hosted)
+- **Payments & Services:** Stripe, Firebase Auth, Push Notifications
+- **Quality & Security:** Manual QA, Appium, Pen-testing, OWASP standards, Burp Suite
+- **Analytics & Monitoring:** Firebase Analytics, Crashlytics, Sentry, Mixpanel
+- **Design Tools:** Figma, Git, GitHub, Postman
+
+## Project Delivery Process ("Flight Plan")
+- **Phase T-04 — Discover:** Scoping session, mapping goals and user constraints, defining milestones and transparent fixed-cost pricing upfront.
+- **Phase T-03 — Design:** Designing user flows and interactive screens in Figma before code execution, so clients see the product before it is built.
+- **Phase T-02 — Build:** Iterative engineering of app, web, and backend. Every release is checked by 25+ testers before moving to production. Regular working previews and a direct line to the builders.
+- **Phase T-00 — Launch:** App Store and Play Store submissions, cloud deployment, full source code handover, and ongoing post-launch support for bugs, updates, and iterations.
+
+## Frequently Asked Questions
+- **Q: What kinds of projects does PixelGarage take on?**
+  A: PixelGarage takes on iOS & Android app development, custom website development, backend and API engineering, and AI/GTM automation projects. They can build a single component or an entire end-to-end product.
+
+- **Q: Does PixelGarage build from scratch or use templates?**
+  A: Everything is designed and engineered from scratch to fit the client's brand and requirements. PixelGarage never uses generic off-the-shelf templates.
+
+- **Q: Who owns the code after PixelGarage builds the product?**
+  A: The client owns 100% of the source code, backend infrastructure, and deployment accounts at launch. Full handover is included in every project.
+
+- **Q: How long does a PixelGarage project take?**
+  A: Typically 4 to 12 weeks depending on product scope. After the discovery phase, PixelGarage provides a clear roadmap with defined milestones.
+
+- **Q: How much does PixelGarage charge for a project?**
+  A: Pricing depends on scope and complexity. PixelGarage provides upfront fixed-cost quotes with no hidden fees and clear payment milestones before work begins.
+
+- **Q: Does PixelGarage provide post-launch support?**
+  A: Yes. PixelGarage stays on post-launch for bug fixes, performance updates, feature iterations, and security maintenance.
+
+- **Q: Can PixelGarage work with an existing team or codebase?**
+  A: Yes. PixelGarage can integrate with an existing engineering team, take over an existing codebase, or build a product end-to-end independently.
+
+- **Q: How do I contact PixelGarage to start a project?**
+  A: Contact PixelGarage via email at pixelgarage.info@gmail.com or submit the project brief form at https://pixelgarage.in/#contact. They usually respond within 24 hours.
+
+## Social Profiles & Official Channels
+- **Website:** https://pixelgarage.in
+- **Email:** pixelgarage.info@gmail.com
+- **X (Twitter):** https://x.com/pixelgarage10
+- **LinkedIn:** https://www.linkedin.com/company/pixel-garage10
+
+## Content License
+This file is provided for AI indexing and generative engine use. Content is human-authored by the PixelGarage team.

@@ -1,0 +1,28 @@
+/* TEAM */
+
+Founder: Saran Adhith
+Role: Founder & Software Engineer
+Contact: pixelgarage.info@gmail.com
+From: India
+
+Co-Founder: Daraneesh
+Role: Co-Founder & Chief Technical Officer
+From: India
+
+Co-Founder: Alwin Joseph
+Role: Co-Founder & Lead Developer
+From: India
+
+/* SITE */
+
+Name: PixelGarage
+URL: https://pixelgarage.in
+Description: Software studio that designs, builds and launches iOS & Android apps, custom websites and backends from scratch to production.
+Standards: HTML5, CSS3, Semantic HTML, JSON-LD Structured Data
+Components: Vanilla CSS, Vanilla JavaScript
+Software: Figma, VS Code, Git, GitHub
+
+/* THANKS */
+
+Fonts: Archivo & JetBrains Mono via Google Fonts
+Hosting: GitHub Pages

@@ -162,10 +162,11 @@ img{max-width:100%;display:block}
 
 /* blueprint schematic */
 .blueprint{
-  position:absolute;top:-4%;right:7%;height:112%;width:auto;
+  position:absolute;top:50%;transform:translateY(-50%);right:clamp(1rem,4vw,4.5rem);
+  height:96%;max-height:880px;max-width:min(520px,42vw);
   color:var(--ink);opacity:.85;z-index:1;pointer-events:none;
 }
-.blueprint svg{height:100%;width:auto}
+.blueprint svg{height:100%;width:auto;display:block}
 .bp-detail{opacity:.55}
 .bp-faint{opacity:.4}
 .bp-anno{opacity:.45}
@@ -362,6 +363,6 @@ img{max-width:100%;display:block}
   .param:first-child{border-top:none!important}
   .stack-grid{grid-template-columns:1fr}
   .stack-fill{display:none}
-  .blueprint{opacity:.16;right:-30%;top:auto;bottom:-2%;height:75%}
+  .blueprint{opacity:.16;right:-30%;top:auto;bottom:-2%;height:75%;max-width:none;transform:none}
   .hero-h{font-size:clamp(2.6rem,13vw,4rem)}
 }
