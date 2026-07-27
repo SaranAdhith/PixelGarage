@@ -140,8 +140,9 @@ img{max-width:100%;display:block}
   position:relative;overflow:hidden;
   padding:clamp(3rem,6vw,5.5rem) var(--pad) clamp(3.5rem,7vw,6rem);
   min-height:calc(100vh - var(--bar));
+  display:flex;align-items:center;
 }
-.hero-inner{position:relative;z-index:2;max-width:720px}
+.hero-inner{position:relative;z-index:2;max-width:720px;width:100%}
 .hero-h{
   font-size:clamp(3rem,8.5vw,7rem);
   font-weight:900;line-height:.9;letter-spacing:-.03em;text-transform:uppercase;
@@ -163,7 +164,7 @@ img{max-width:100%;display:block}
 /* blueprint schematic */
 .blueprint{
   position:absolute;top:50%;transform:translateY(-50%);right:clamp(1rem,4vw,4.5rem);
-  height:96%;max-height:880px;max-width:min(520px,42vw);
+  height:min(96%,calc(90vh - var(--bar)));max-height:820px;max-width:min(520px,42vw);
   color:var(--ink);opacity:.85;z-index:1;pointer-events:none;
 }
 .blueprint svg{height:100%;width:auto;display:block}
