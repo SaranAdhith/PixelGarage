@@ -167,3 +167,151 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     window.scrollTo({ top: y, behavior: 'smooth' });
   });
 });
+
+/* ------------------------------------------------------------------
+   WEBMCP — Agentic Browsing (tools registered + schemas)
+   Exposes PixelGarage's key interactions as structured tools so
+   AI agents can discover and call them reliably.
+   Spec: https://github.com/WICG/webmcp
+------------------------------------------------------------------ */
+(function () {
+  if (!navigator.modelContext || typeof navigator.modelContext.registerTool !== 'function') return;
+
+  /* ── Tool 1: Submit project brief ── */
+  navigator.modelContext.registerTool({
+    name: 'submit-project-brief',
+    description: 'Submit a project inquiry to PixelGarage. The studio builds iOS & Android apps, custom websites, and backend APIs from scratch to production. Use this to send a project brief; PixelGarage typically replies within 24 hours.',
+    inputSchema: {
+      type: 'object',
+      required: ['name', 'email', 'projectType', 'details'],
+      properties: {
+        name: {
+          type: 'string',
+          description: 'Full name of the person submitting the inquiry.'
+        },
+        email: {
+          type: 'string',
+          format: 'email',
+          description: 'Contact email address where PixelGarage should reply.'
+        },
+        projectType: {
+          type: 'string',
+          enum: [
+            'Mobile app (iOS / Android)',
+            'Website',
+            'Backend / API',
+            'Full product (design → launch)',
+            'Something else'
+          ],
+          description: 'The category of work being requested.'
+        },
+        details: {
+          type: 'string',
+          minLength: 10,
+          description: 'A short description of what the user wants to build — the more context the better.'
+        }
+      }
+    },
+    outputSchema: {
+      type: 'object',
+      properties: {
+        success: {
+          type: 'boolean',
+          description: 'True if the form was submitted and the email client was opened.'
+        },
+        message: {
+          type: 'string',
+          description: 'A human-readable status message.'
+        }
+      }
+    },
+    invoke: function (input) {
+      const form = document.getElementById('contactForm');
+      if (!form) return { success: false, message: 'Contact form not found on page.' };
+
+      /* Populate the form fields */
+      if (form.name)    form.name.value    = input.name    || '';
+      if (form.email)   form.email.value   = input.email   || '';
+      if (form.type)    form.type.value    = input.projectType || '';
+      if (form.message) form.message.value = input.details || '';
+
+      /* Scroll to and highlight the form */
+      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      /* Open email client (mirrors the manual submit handler) */
+      const subject = encodeURIComponent(`Project brief — ${input.projectType} (${input.name})`);
+      const body    = encodeURIComponent(
+        `Name: ${input.name}\nEmail: ${input.email}\nNeed: ${input.projectType}\n\n${input.details}`
+      );
+      window.location.href = `mailto:pixelgarage.info@gmail.com?subject=${subject}&body=${body}`;
+
+      return { success: true, message: 'Project brief submitted — email client opened for confirmation.' };
+    }
+  });
+
+  /* ── Tool 2: Get studio info ── */
+  navigator.modelContext.registerTool({
+    name: 'get-pixelgarage-info',
+    description: 'Retrieve key information about PixelGarage — the services offered, the team, shipped products, and how to get in touch. Use this before submitting a brief to understand what PixelGarage builds.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        topic: {
+          type: 'string',
+          enum: ['services', 'team', 'portfolio', 'process', 'contact', 'all'],
+          description: 'The specific topic to retrieve. Defaults to "all".'
+        }
+      }
+    },
+    outputSchema: {
+      type: 'object',
+      properties: {
+        studio: { type: 'string' },
+        services: { type: 'array', items: { type: 'string' } },
+        team: { type: 'array', items: { type: 'string' } },
+        portfolio: { type: 'array', items: { type: 'string' } },
+        process: { type: 'array', items: { type: 'string' } },
+        contact: { type: 'object' }
+      }
+    },
+    invoke: function (input) {
+      const topic = (input && input.topic) || 'all';
+      const data = {
+        studio: 'PixelGarage — software studio based in India. Designs, builds and launches iOS & Android apps, custom websites and backend APIs from scratch to production.',
+        services: [
+          'iOS & Android Mobile App Development (SwiftUI, Kotlin Jetpack Compose, React Native)',
+          'Custom Web Development (React, Next.js, TypeScript)',
+          'Backend Engineering & APIs (Node.js, Express, PostgreSQL, GraphQL)',
+          'AI & GTM Automation Workflows (n8n, Claude, OpenRouter)'
+        ],
+        team: [
+          'Saran Adhith — Founder & Software Engineer',
+          'Daraneesh — Co-Founder & CTO',
+          'Alwin N Joseph — Co-Founder & Lead Developer',
+          '25+ QA testers per release'
+        ],
+        portfolio: [
+          'Mount Valley School Platform — custom web app & backend, live in production',
+          'RoomAdda — iOS & Android booking app with listing, search & reservation backend',
+          'CommunityTracker.ai GTM Stack — 100+ AI automation workflows on self-hosted n8n VPS'
+        ],
+        process: [
+          'T-04 Discover: Scope session, milestones, fixed-cost quote',
+          'T-03 Design: Figma flows & screens before code begins',
+          'T-02 Build: Iterative engineering, 25-tester QA on every release',
+          'T-00 Launch: Store submissions, deployment, full source code handover'
+        ],
+        contact: {
+          email: 'pixelgarage.info@gmail.com',
+          website: 'https://pixelgarage.in',
+          contactForm: 'https://pixelgarage.in/#contact',
+          responseTime: 'Within 24 hours'
+        }
+      };
+
+      if (topic === 'all') return data;
+      return { [topic]: data[topic] };
+    }
+  });
+})();
+

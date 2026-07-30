@@ -138,13 +138,24 @@ img{max-width:100%;display:block}
    ============================================================ */
 .hero{
   position:relative;overflow:hidden;
-  padding:clamp(3rem,6vw,5.5rem) var(--pad) clamp(3.5rem,7vw,6rem);
-  min-height:calc(100vh - var(--bar));
-  display:flex;align-items:center;
+  padding:clamp(1.5rem,3vw,3rem) var(--pad) clamp(3.5rem,7vw,6rem);
+  min-height:calc(100svh - var(--bar));
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:clamp(20px,3vw,60px);
+  align-items:stretch;
 }
-.hero-inner{position:relative;z-index:2;max-width:720px;width:100%}
+.hero-inner{
+  position:relative;
+  z-index:2;
+  max-width:720px;
+  width:100%;
+  order:1;
+  align-self:flex-start;
+  margin-top:clamp(2rem, 12vh, 8rem);
+}
 .hero-h{
-  font-size:clamp(3rem,8.5vw,7rem);
+  font-size:min(6.5rem,6vw);
   font-weight:900;line-height:.9;letter-spacing:-.03em;text-transform:uppercase;
   margin:.4rem 0 1.6rem;
 }
@@ -163,11 +174,16 @@ img{max-width:100%;display:block}
 
 /* blueprint schematic */
 .blueprint{
-  position:absolute;top:50%;transform:translateY(-50%);right:clamp(1rem,4vw,4.5rem);
-  height:min(96%,calc(90vh - var(--bar)));max-height:820px;max-width:min(520px,42vw);
+  position:relative;top:auto;transform:none;right:auto;
+  justify-self:start;
+  align-self:center;
+  width:100%;
+  max-width:700px;
+  height:auto;
+  order:2;
   color:var(--ink);opacity:.85;z-index:1;pointer-events:none;
 }
-.blueprint svg{height:100%;width:auto;display:block}
+.blueprint svg{width:100%;height:auto;display:block}
 .bp-detail{opacity:.55}
 .bp-faint{opacity:.4}
 .bp-anno{opacity:.45}
@@ -328,7 +344,34 @@ img{max-width:100%;display:block}
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+@media(max-width:1600px){
+  .hero-h{
+    font-size:5.4rem;
+  }
+}
+
 @media(max-width:1180px){
+  .hero{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:4rem;
+  }
+  .hero-inner{
+    max-width:100%;
+    margin-top:0;
+  }
+  .blueprint{
+    position:relative;
+    right:auto;
+    top:auto;
+    transform:none;
+    width:100%;
+    max-width:550px;
+    opacity:.85;
+    margin:0 auto;
+  }
+  
   .params{grid-template-columns:repeat(2,1fr)}
   .param:nth-child(-n+2){border-top:none}
   .param:nth-child(odd){border-left:none}
@@ -364,6 +407,36 @@ img{max-width:100%;display:block}
   .param:first-child{border-top:none!important}
   .stack-grid{grid-template-columns:1fr}
   .stack-fill{display:none}
-  .blueprint{opacity:.16;right:-30%;top:auto;bottom:-2%;height:75%;max-width:none;transform:none}
+  .blueprint{width:100%; height:auto; opacity:.85; margin:2rem auto 0;}
   .hero-h{font-size:clamp(2.6rem,13vw,4rem)}
 }
+
+/* ============================================================
+   ALL WIDE DISPLAYS ≥ 1600px (16:9, 16:10, ultrawide, etc.)
+   Switches to equal columns so the rocket sits in the middle
+   instead of being pushed far right by the 1.2fr left column.
+   ============================================================ */
+@media (min-width: 1600px) {
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 2vw, 40px);
+  }
+  .blueprint {
+    /* -3vw ≈ -58px at 1920px: pulls rocket ~130px left vs base */
+    margin-left: -3vw;
+  }
+}
+
+/* ============================================================
+   16:10 TALL DISPLAYS ONLY (1920×1200, 2560×1600 etc.)
+   max-aspect-ratio 17/10 = 1.7 catches 16:10 (1.6) but
+   NOT 16:9 (1.778) — keeps vertical spacing tight for taller
+   viewports where the hero would otherwise have excess height.
+   ============================================================ */
+@media (min-width: 1600px) and (max-aspect-ratio: 17/10) {
+  .hero-inner {
+    margin-top: clamp(1rem, 6vh, 4rem);
+  }
+}
+
+

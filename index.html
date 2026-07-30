@@ -3,11 +3,14 @@
 
 <head>
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-TQRKXK8N');</script>
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TQRKXK8N');</script>
   <!-- End Google Tag Manager -->
 
   <meta charset="UTF-8" />
@@ -62,9 +65,15 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
+  <!-- Async font load: preload then promote to stylesheet after parse — removes 200 ms render block -->
+  <link rel="preload"
     href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet" />
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  </noscript>
   <link rel="stylesheet" href="styles.css" />
   <link rel="canonical" href="https://pixelgarage.in/" />
   <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png" />
@@ -160,7 +169,7 @@
           },
           {
             "@type": "Person",
-            "name": "Alwin Joseph",
+            "name": "Alwin N Joseph",
             "jobTitle": "Co-Founder & Lead Developer",
             "worksFor": {"@id": "https://pixelgarage.in/#organization"}
           }
@@ -371,8 +380,8 @@
 
 <body>
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQRKXK8N"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQRKXK8N" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
   <a class="skip-link" href="#main">Skip to content</a>
@@ -415,7 +424,7 @@
           </li>
           <li>
             <span class="ctag">WB</span>
-            <span class="cinfo"><b>Alwin Joseph</b><em>Co-Founder</em></span>
+            <span class="cinfo"><b>Alwin N Joseph</b><em>Co-Founder</em></span>
           </li>
         </ul>
       </div>
@@ -721,7 +730,7 @@
         <li class="crew-row reveal">
           <span class="cr-idx">03</span>
           <span class="cr-mono">AJ</span>
-          <span class="cr-name">Alwin Joseph</span>
+          <span class="cr-name">Alwin N Joseph</span>
           <span class="cr-role">Co-Founder</span>
           <span class="cr-tag">Apps · Web · Delivery</span>
         </li>
@@ -1116,7 +1125,9 @@
           </a>
         </div>
 
-        <form class="contact-form reveal" id="contactForm" novalidate>
+        <form class="contact-form reveal" id="contactForm" novalidate
+          toolname="submit-project-brief"
+          tooldescription="Submit a project inquiry to PixelGarage. Provide your name, email, the type of project you need (mobile app, website, backend, or full product), and a short description of what you want to build. PixelGarage will reply within 24 hours to scope the work.">
           <div class="field">
             <label for="cf-name">Name</label>
             <input id="cf-name" name="name" type="text" placeholder="Your name" required />
@@ -1155,16 +1166,20 @@
       <div class="foot-row foot-meta">
         <span>Shipped for Mount Valley School &amp; RoomAdda</span>
         <span>
-          <a href="https://www.linkedin.com/company/pixel-garage10" target="_blank" rel="noopener noreferrer" aria-label="PixelGarage on LinkedIn">LinkedIn</a> ·
-          <a href="https://x.com/pixelgarage10" target="_blank" rel="noopener noreferrer" aria-label="PixelGarage on X (Twitter)">X (Twitter)</a>
+          <a href="https://www.linkedin.com/company/pixel-garage10" target="_blank" rel="noopener noreferrer"
+            aria-label="PixelGarage on LinkedIn">LinkedIn</a> ·
+          <a href="https://x.com/pixelgarage10" target="_blank" rel="noopener noreferrer"
+            aria-label="PixelGarage on X (Twitter)">X (Twitter)</a>
         </span>
-        <span><a href="mailto:pixelgarage.info@gmail.com" aria-label="Email PixelGarage">pixelgarage.info@gmail.com</a></span>
+        <span><a href="mailto:pixelgarage.info@gmail.com"
+            aria-label="Email PixelGarage">pixelgarage.info@gmail.com</a></span>
         <span>© <span id="year">2026</span> · Station PG-01</span>
       </div>
     </footer>
   </main>
 
-  <script src="script.js"></script>
+  <!-- defer: downloads in parallel, executes after HTML parsed — removes 230 ms render block -->
+  <script src="script.js" defer></script>
 </body>
 
 </html>
