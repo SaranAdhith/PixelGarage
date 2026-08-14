@@ -122,25 +122,95 @@ function countUp(el, steps) {
 
 /* ------------------------------------------------------------------
    CONTACT FORM
+
+   Submits over AJAX so the brief is actually captured server-side.
+   A mailto: handoff is only used as a last-resort fallback — it fails
+   silently for webmail users, mobile browsers with no mail client, and
+   locked-down corporate machines, which loses the lead with no record.
+
+   >>> SETUP (one step): create a free access key at https://web3forms.com
+       (enter pixelgarage.info@gmail.com, confirm, paste the key below).
+       Until a real key is set, the form falls back to mailto: as before.
 ------------------------------------------------------------------ */
+const PG_FORM_ENDPOINT = 'https://api.web3forms.com/submit';
+const PG_ACCESS_KEY = 'REPLACE_WITH_WEB3FORMS_ACCESS_KEY';
+
 (function () {
   const form = document.getElementById('contactForm');
   const note = document.getElementById('formNote');
+  const btn = form && form.querySelector('.btn-send');
   if (!form) return;
-  form.addEventListener('submit', e => {
+
+  const setNote = (msg, tone) => {
+    if (!note) return;
+    note.style.color = tone === 'error' ? 'var(--ink)' : 'var(--ink2)';
+    note.textContent = msg;
+  };
+
+  const mailtoFallback = (name, email, type, message) => {
+    const subject = encodeURIComponent(`Project brief — ${type} (${name})`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nNeed: ${type}\n\n${message}`);
+    window.location.href = `mailto:pixelgarage.info@gmail.com?subject=${subject}&body=${body}`;
+    setNote('Opening your email app… if nothing happens, write to pixelgarage.info@gmail.com');
+  };
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
+
     const name = form.name.value.trim();
     const email = form.email.value.trim();
     const type = form.type.value;
     const message = form.message.value.trim();
+
     if (!name || !email || !message) {
-      if (note) { note.style.color = 'var(--ink)'; note.textContent = 'Please fill in your name, email and project details.'; }
+      setNote('Please fill in your name, email and project details.', 'error');
       return;
     }
-    const subject = encodeURIComponent(`Project brief — ${type} (${name})`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nNeed: ${type}\n\n${message}`);
-    window.location.href = `mailto:pixelgarage.info@gmail.com?subject=${subject}&body=${body}`;
-    if (note) { note.style.color = 'var(--ink2)'; note.textContent = 'Opening your email app… if nothing happens, write to pixelgarage.info@gmail.com'; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setNote('That email address doesn’t look right — mind checking it?', 'error');
+      return;
+    }
+    /* Honeypot: bots fill hidden fields, humans never see this one. */
+    if (form.botcheck && form.botcheck.value) return;
+
+    /* No key configured yet — preserve the previous behaviour. */
+    if (PG_ACCESS_KEY === 'REPLACE_WITH_WEB3FORMS_ACCESS_KEY') {
+      mailtoFallback(name, email, type, message);
+      return;
+    }
+
+    const label = btn ? btn.innerHTML : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'Transmitting…'; }
+    setNote('Sending your brief…');
+
+    try {
+      const res = await fetch(PG_FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: PG_ACCESS_KEY,
+          subject: `Project brief — ${type} (${name})`,
+          from_name: 'PixelGarage Website',
+          name, email, type, message
+        })
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        /* Conversion event for GTM / GA4 */
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'generate_lead', form_name: 'project_brief', project_type: type });
+
+        form.reset();
+        setNote('Brief received — we’ll reply within 24 hours. Check your inbox.');
+      } else {
+        mailtoFallback(name, email, type, message);
+      }
+    } catch (err) {
+      mailtoFallback(name, email, type, message);
+    } finally {
+      if (btn) { btn.disabled = false; btn.innerHTML = label; }
+    }
   });
 })();
 
@@ -167,6 +237,26 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     window.scrollTo({ top: y, behavior: 'smooth' });
   });
 });
+
+/* ------------------------------------------------------------------
+   STICKY MOBILE CTA — show after scrolling past hero
+------------------------------------------------------------------ */
+(function () {
+  const cta = document.getElementById('stickyCta');
+  const hero = document.getElementById('mission');
+  const contact = document.getElementById('contact');
+  if (!cta || !hero) return;
+  const show = () => { cta.classList.add('visible'); cta.setAttribute('aria-hidden', 'false'); };
+  const hide = () => { cta.classList.remove('visible'); cta.setAttribute('aria-hidden', 'true'); };
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.target === hero) { e.isIntersecting ? hide() : show(); }
+      if (e.target === contact && e.isIntersecting) hide();
+    });
+  }, { threshold: 0.1 });
+  obs.observe(hero);
+  if (contact) obs.observe(contact);
+})();
 
 /* ------------------------------------------------------------------
    WEBMCP — Agentic Browsing (tools registered + schemas)
@@ -217,7 +307,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       properties: {
         success: {
           type: 'boolean',
-          description: 'True if the form was submitted and the email client was opened.'
+          description: 'True if the project brief was submitted to PixelGarage.'
         },
         message: {
           type: 'string',
@@ -238,14 +328,13 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       /* Scroll to and highlight the form */
       form.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-      /* Open email client (mirrors the manual submit handler) */
-      const subject = encodeURIComponent(`Project brief — ${input.projectType} (${input.name})`);
-      const body    = encodeURIComponent(
-        `Name: ${input.name}\nEmail: ${input.email}\nNeed: ${input.projectType}\n\n${input.details}`
-      );
-      window.location.href = `mailto:pixelgarage.info@gmail.com?subject=${subject}&body=${body}`;
+      /* Submit through the same handler as a manual submit, so the brief is
+         actually captured server-side rather than dropped into a mailto: */
+      form.requestSubmit
+        ? form.requestSubmit()
+        : form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
 
-      return { success: true, message: 'Project brief submitted — email client opened for confirmation.' };
+      return { success: true, message: 'Project brief submitted to PixelGarage — they reply within 24 hours.' };
     }
   });
 

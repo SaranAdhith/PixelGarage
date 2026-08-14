@@ -1,0 +1,4 @@
+Contact: mailto:pixelgarage.info@gmail.com
+Preferred-Languages: en
+Canonical: https://pixelgarage.in/.well-known/security.txt
+Expires: 2027-08-13T00:00:00.000Z

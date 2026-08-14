@@ -330,7 +330,10 @@ img{max-width:100%;display:block}
   padding:.9rem 1.2rem;border-radius:2px;cursor:pointer;transition:opacity .2s;text-transform:uppercase;
 }
 .btn-send:hover{opacity:.85}
+.btn-send:disabled{opacity:.55;cursor:progress}
 .form-note{font-size:.8rem;color:var(--ink2);min-height:1em}
+/* honeypot — genuinely hidden from users; carries no indexable content */
+.hp-field{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
 
 /* ============================================================
    FOOTER
@@ -438,5 +441,72 @@ img{max-width:100%;display:block}
     margin-top: clamp(1rem, 6vh, 4rem);
   }
 }
+
+/* ============================================================
+   SERVICES — PAYLOAD MANIFEST
+   Visible, user-facing service content. Deliberately NOT hidden:
+   sr-only keyword blocks are a Google spam-policy violation.
+   ============================================================ */
+.svc-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  border-top:1px solid var(--line);border-left:1px solid var(--line);
+}
+.svc{
+  padding:clamp(1.5rem,3vw,2.2rem);
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--card);
+}
+.svc-idx{
+  display:block;font-family:'JetBrains Mono',monospace;font-size:.6rem;
+  letter-spacing:.16em;color:var(--faint);margin-bottom:.9rem;
+}
+.svc h3{
+  font-size:1.02rem;font-weight:700;line-height:1.3;letter-spacing:-.01em;
+  color:var(--ink);margin-bottom:.65rem;
+}
+.svc p{font-size:.9rem;line-height:1.7;color:var(--ink2)}
+.svc .badges{margin-top:1rem}
+.svc-close{
+  margin-top:2.2rem;font-size:.92rem;line-height:1.8;color:var(--ink2);max-width:900px;
+}
+.svc-close b{color:var(--ink);font-weight:700}
+
+@media(max-width:900px){
+  .svc-grid{grid-template-columns:1fr}
+}
+
+/* ============================================================
+   HERO CTA BUTTONS
+   ============================================================ */
+.hero-ctas{display:flex;gap:1rem;align-items:center;margin-bottom:2.8rem;flex-wrap:wrap}
+.hero-cta-primary{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.06em;
+  background:var(--ink);color:var(--bg);border:1px solid var(--ink);
+  padding:.75rem 1.3rem;border-radius:2px;text-transform:uppercase;transition:all .2s;
+}
+.hero-cta-primary:hover{opacity:.85}
+.hero-cta-secondary{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.06em;
+  color:var(--ink);border:1px solid var(--line);
+  padding:.75rem 1.3rem;border-radius:2px;text-transform:uppercase;transition:all .2s;
+}
+.hero-cta-secondary:hover{border-color:var(--ink);background:var(--bg2)}
+
+/* ============================================================
+   STICKY MOBILE CTA BAR
+   ============================================================ */
+.sticky-cta{
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--ink);padding:.75rem var(--pad);
+  z-index:1050;
+  transform:translateY(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);
+}
+.sticky-cta.visible{transform:translateY(0)}
+.sticky-cta-btn{
+  display:block;text-align:center;
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.06em;
+  color:var(--bg);text-transform:uppercase;padding:.4rem 0;
+}
+@media(min-width:900px){.sticky-cta{display:none}}
 
 

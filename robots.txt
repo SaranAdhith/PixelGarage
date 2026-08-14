@@ -49,6 +49,27 @@ Allow: /
 User-agent: YouBot
 Allow: /
 
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Gemini
+Allow: /
+
+User-agent: AI2Bot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
+
+User-agent: Omgilibot
+Allow: /
+
 
 # XML Sitemap Location
 Sitemap: https://pixelgarage.in/sitemap.xml
+
+# AI Context File
+# LLMs.txt: https://pixelgarage.in/llms.txt
