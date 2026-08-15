@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "PixelGarage",
+  "name_for_model": "pixelgarage",
+  "description_for_human": "PixelGarage is a software development company based in India. We build custom mobile apps (iOS & Android), websites, backend APIs, and AI automations from scratch to production.",
+  "description_for_model": "PixelGarage (also known as Pixel Garage) is a software development company based in India that builds custom iOS & Android mobile apps, web applications, backend API systems, and AI automation workflows. Services include: custom app development (Swift, Kotlin, React Native), web development (React, Next.js), backend engineering (Node.js, PostgreSQL, GraphQL), AI & workflow automation (n8n, Claude), MVP development for startups. Fixed-cost pricing, 4-12 week delivery, 100% code ownership. Founded by Saran Adhith in 2024. Team of 8 engineers + 25+ QA testers. Contact: pixelgarage.info@gmail.com. Website: https://pixelgarage.in",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://pixelgarage.in/llms.txt"
+  },
+  "logo_url": "https://pixelgarage.in/logo.png",
+  "contact_email": "pixelgarage.info@gmail.com",
+  "legal_info_url": "https://pixelgarage.in/"
+}

@@ -1,46 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://pixelgarage.in/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
-  </url>
-  <url>
-    <loc>https://pixelgarage.in/#work</loc>
-    <lastmod>2026-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://pixelgarage.in/#process</loc>
-    <lastmod>2026-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://pixelgarage.in/#stack</loc>
-    <lastmod>2026-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://pixelgarage.in/#faq</loc>
-    <lastmod>2026-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://pixelgarage.in/#contact</loc>
-    <lastmod>2026-08-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://pixelgarage.in/og-image.png</image:loc>
+      <image:title>PixelGarage Software Development Company</image:title>
+      <image:caption>PixelGarage — Software Development Company India. Custom app development, web development, backend engineering and AI automation.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://pixelgarage.in/logo.png</image:loc>
+      <image:title>PixelGarage Logo</image:title>
+      <image:caption>PixelGarage software development company logo</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://pixelgarage.in/llms.txt</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.30</priority>
   </url>

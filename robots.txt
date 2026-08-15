@@ -1,5 +1,8 @@
 # robots.txt for PixelGarage (https://pixelgarage.in)
 
+# Preferred host
+Host: https://pixelgarage.in
+
 User-agent: *
 Allow: /
 
@@ -72,4 +75,4 @@ Allow: /
 Sitemap: https://pixelgarage.in/sitemap.xml
 
 # AI Context File
-# LLMs.txt: https://pixelgarage.in/llms.txt
+LLMs.txt: https://pixelgarage.in/llms.txt

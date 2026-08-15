@@ -404,3 +404,69 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 })();
 
+/* ------------------------------------------------------------------
+   SCROLL-DEPTH TRACKING (GA4 via GTM dataLayer)
+   Fires once per threshold: 25%, 50%, 75%, 100%
+------------------------------------------------------------------ */
+(function () {
+  const thresholds = [25, 50, 75, 100];
+  const fired = new Set();
+  const onScroll = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight <= 0) return;
+    const pct = Math.round((scrollTop / docHeight) * 100);
+    thresholds.forEach(t => {
+      if (pct >= t && !fired.has(t)) {
+        fired.add(t);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'scroll_depth', scroll_percentage: t });
+      }
+    });
+  };
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => { onScroll(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+
+/* ------------------------------------------------------------------
+   CTA CLICK TRACKING (GA4 via GTM dataLayer)
+   Tracks all elements with data-cta attribute
+------------------------------------------------------------------ */
+(function () {
+  document.addEventListener('click', e => {
+    const cta = e.target.closest('[data-cta]');
+    if (!cta) return;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'cta_click',
+      cta_name: cta.dataset.cta,
+      cta_text: cta.textContent.trim().slice(0, 80),
+      cta_href: cta.href || ''
+    });
+  });
+})();
+
+/* ------------------------------------------------------------------
+   FAQ INTERACTION TRACKING
+   Tracks which FAQ items users open
+------------------------------------------------------------------ */
+(function () {
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (item.open) {
+        const question = item.querySelector('summary');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'faq_open',
+          faq_question: question ? question.textContent.trim().slice(0, 120) : ''
+        });
+      }
+    });
+  });
+})();
+
