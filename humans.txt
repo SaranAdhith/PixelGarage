@@ -1,16 +1,16 @@
 /* TEAM */
 
-Founder: Saran Adhith
-Role: Founder & Software Engineer
+Managing Director: Saran Adhith
+Role: Managing Director
 Contact: pixelgarage.info@gmail.com
 From: India
 
-Co-Founder: Daraneesh
-Role: Co-Founder & Chief Technical Officer
+Managing Director: Daraneesh
+Role: Managing Director
 From: India
 
-Co-Founder: Alwin Joseph
-Role: Co-Founder & Lead Developer
+Managing Director: Thiivvyesh
+Role: Managing Director
 From: India
 
 /* SITE */

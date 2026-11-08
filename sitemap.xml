@@ -5,16 +5,11 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://pixelgarage.in/</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
     <image:image>
-      <image:loc>https://pixelgarage.in/og-image.png</image:loc>
-      <image:title>PixelGarage Software Development Company</image:title>
-      <image:caption>PixelGarage — Software Development Company India. Custom app development, web development, backend engineering and AI automation.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://pixelgarage.in/logo.png</image:loc>
+      <image:loc>https://pixelgarage.in/android-chrome-512x512.png</image:loc>
       <image:title>PixelGarage Logo</image:title>
       <image:caption>PixelGarage software development company logo</image:caption>
     </image:image>

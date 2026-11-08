@@ -1,2 +1,5 @@
 # Local-only working docs — must NOT be published on GitHub Pages (this repo is served publicly via .nojekyll)
 HANDOFF.md
+
+# macOS folder metadata
+.DS_Store

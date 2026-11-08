@@ -27,9 +27,9 @@ iOS & Android apps · Websites from scratch · Backend & APIs · Product design 
 
 | Person | Role |
 |--------|------|
-| Saran Adhith | Founder |
-| Alwin Joseph | Co‑Founder |
-| Daraneesh | Co‑Founder |
+| Saran Adhith | Managing Director |
+| Thiivvyesh | Managing Director |
+| Daraneesh | Managing Director |
 | Puranjothi | Android Developer |
 | Neha | iOS Developer |
 | Jasmine, Michael, Tejas | Interns |

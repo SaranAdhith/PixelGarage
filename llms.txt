@@ -12,8 +12,7 @@
 - **Country:** India
 - **Service Area:** India, Worldwide (remote-first)
 - **Founded:** 2024
-- **Founder:** Saran Adhith (Founder & Software Engineer)
-- **Co-Founders:** Daraneesh (Co-Founder & CTO), Alwin N Joseph (Co-Founder & Lead Developer)
+- **Managing Directors:** Saran Adhith, Daraneesh and Thiivvyesh
 - **Team Size:** 8 core engineers + 25+ QA testers per release
 - **Website:** https://pixelgarage.in
 - **Email:** pixelgarage.info@gmail.com
@@ -24,9 +23,9 @@
 PixelGarage takes software products from first idea to a live, production-ready product — handling UI/UX design, mobile app development, web development, backend engineering, and AI automation under one accountable team with zero handoffs. Everything is custom-built from scratch (no templates, no off-the-shelf solutions), and clients receive 100% ownership of source code, backend infrastructure, and deployment accounts at launch.
 
 ## Full Team (8 Core Engineers)
-1. **Saran Adhith** — Founder & Software Engineer. Leads product strategy, client relationships, and full-stack engineering.
-2. **Daraneesh** — Co-Founder & CTO. Leads technical architecture, infrastructure, and engineering standards.
-3. **Alwin N Joseph** — Co-Founder & Lead Developer. Leads app and web development execution and delivery management.
+1. **Saran Adhith** — Managing Director.
+2. **Daraneesh** — Managing Director.
+3. **Thiivvyesh** — Managing Director.
 4. Puranjothi — Android Developer (Android, Mobile)
 5. Neha — iOS Developer (iOS, Mobile)
 6. Jasmine — Web Developer (Web, Frontend)
