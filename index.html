@@ -10,6 +10,9 @@
 <link rel="icon" href="favicon.svg?v=3" type="image/svg+xml">
 <link rel="preload" href="assets/logo-mark-light.svg" as="image">
 <link rel="preload" href="assets/logo-mark.svg" as="image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&amp;text=SaranAdhithThiivvyeshDaraneesh%20&amp;display=swap">
 <script>
 /* Start before first paint; the independent timeout never depends on a CDN. */
 window.pgSplashReady = new Promise(resolve => {
@@ -280,6 +283,9 @@ html{scroll-padding-top:calc(var(--mobile-nav-height) + 20px)}.wrap{padding-left
 .footer-made{display:inline-flex;align-items:center;gap:8px}.footer-made svg{width:16px;height:14px;color:var(--accent)}
 @media(max-width:900px){.footer-bulb{width:62px}.footer-stars{display:none}.fx-loop{display:none}}
 @media(max-width:480px){.footer-bulb{display:none}.fx-note span{font-size:10px}}
+
+/* Directors' names get their own typeface. */
+.director-card h3{font-family:'Space Grotesk',var(--heading);font-weight:600;letter-spacing:-.025em}
 
 /* Pure black and white identity on the splash. */
 .preloader>.splash-identity .splash-name{color:#fff}.splash-light .splash-name{color:#000}
